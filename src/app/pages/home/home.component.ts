@@ -1,3 +1,4 @@
+import { PublicationService } from './../../services/publication.service';
 import { AuthService } from './../../services/auth.service';
 import { LoginComponent } from './../../components/login/login.component';
 import { AlertDialogComponent } from './../../components/alert-dialog/alert-dialog.component';
@@ -21,9 +22,18 @@ export class HomeComponent implements OnInit {
   neededDateControl: FormControl = new FormControl('');
   needForSepacialDate: any = null;
 
-  constructor(private dialog: MatDialog, public authService: AuthService) { }
+  allPublications: any[] = [];
+
+  constructor(
+      private dialog: MatDialog,
+      public authService: AuthService,
+      private publicationService: PublicationService
+  ) { }
 
   ngOnInit(): void {
+    this.publicationService.allPublications.subscribe((data) => {
+      this.allPublications = data;
+    });
   }
 
   checkSendBtnAvailable() {
@@ -53,23 +63,5 @@ export class HomeComponent implements OnInit {
     this.neededDateControl.setValue('');
     this.needForSepacialDate = null;
     this.showSuccessfulForm = false;
-  }
-
-  loginBtnClicked() {
-    this.dialog.open(LoginComponent, {
-      panelClass: 'modal-container',
-      backdropClass: 'modal-backdrop',
-    })
-  }
-
-  registerBtnClicked() {
-    this.dialog.open(SignUpComponent, {
-      panelClass: 'modal-container',
-      backdropClass: 'modal-backdrop',
-    })
-  }
-
-  signOutBtnClicked() {
-    this.authService.isUserLogged = false;
   }
 }

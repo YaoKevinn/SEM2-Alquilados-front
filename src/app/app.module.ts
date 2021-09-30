@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -30,6 +31,7 @@ const maskConfig: Partial<IConfig> = {
     FooterComponent,
     AlertDialogComponent,
     SignUpComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

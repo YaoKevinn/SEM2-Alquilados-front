@@ -1,14 +1,5 @@
 <div class="container">
 
-  <div class="navbar">
-    <img src="/assets/images/logo.svg" alt="logo" />
-    <div class="button-section">
-      <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="loginBtnClicked()">Iniciar sesión</p>
-      <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="registerBtnClicked()">Registrarse</p>
-      <p *ngIf="authService.isUserLogged" class="nav-item" (click)="signOutBtnClicked()">Cerrar sesión</p>
-    </div>
-  </div>
-
   <div class="hero-container">
 
     <div class="hero-info">
@@ -62,7 +53,7 @@
             <div class="date-option" [class.selected]="needForSepacialDate === true" (click)="needForSepacialDate = true"><p>Sí</p></div>
             <div class="date-option" [class.selected]="needForSepacialDate === false" (click)="needForSepacialDate = false"><p>No</p></div>
             <div class="date-selector" *ngIf="needForSepacialDate">
-              <input matInput type="text" placeholder="01/01/2021" mask="00/00/0000" [formControl]="neededDateControl"/>
+              <input matInput type="text" placeholder="01/01/2021" mask="d0/M0/0000" [formControl]="neededDateControl"/>
             </div>
           </div>
 
@@ -100,12 +91,10 @@
       <span class="blue">Ofreceselos!</span>
     </h2>
     <div class="publications">
-      <app-publication-card></app-publication-card>
-      <app-publication-card></app-publication-card>
-      <app-publication-card></app-publication-card>
-      <app-publication-card></app-publication-card>
-      <app-publication-card></app-publication-card>
-      <app-publication-card></app-publication-card>
+      <app-publication-card
+        *ngFor="let publication of allPublications"
+        [pubData]="publication"
+      ></app-publication-card>
     </div>
   </div>
 

@@ -1,0 +1,8 @@
+<div class="navbar">
+  <img src="/assets/images/logo.svg" alt="logo" />
+  <div class="button-section">
+    <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="loginBtnClicked()">Iniciar sesión</p>
+    <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="registerBtnClicked()">Registrarse</p>
+    <p *ngIf="authService.isUserLogged" class="nav-item" (click)="signOutBtnClicked()">Cerrar sesión</p>
+  </div>
+</div>

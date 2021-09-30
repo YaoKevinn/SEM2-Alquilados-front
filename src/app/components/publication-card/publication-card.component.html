@@ -2,7 +2,7 @@
 <div class="card-container">
 
   <div class="card-header">
-    <p>Juan Goméz</p>
+    <p>{{ pubData.nombre }} {{ pubData.apellido }}</p>
     <img src="/assets/icons/user-avatar.svg" alt="user">
   </div>
 
@@ -11,16 +11,16 @@
   <div class="product-info">
 
     <p class="title">Qué busca?</p>
-    <p class="answer">Martillo</p>
+    <p class="answer">{{ pubData.descripcion }}</p>
 
     <p class="title">Antes de:</p>
-    <p class="answer">10/11/2021</p>
+    <p class="answer">{{ pubData.fecha_limite }}</p>
 
   </div>
 
   <div class="buttons-section">
-    <div class="btn"><p>No lo tengo</p></div>
-    <div class="btn yes"><p>Lo tengo!</p></div>
+    <div class="btn" (click)="removeCard()"><p>No lo tengo</p></div>
+    <div class="btn yes" (click)="goToDetail()"><p>Lo tengo!</p></div>
   </div>
 
 </div>

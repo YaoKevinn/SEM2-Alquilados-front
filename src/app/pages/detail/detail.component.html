@@ -1,1 +1,68 @@
-<p>detail works!</p>
+<div class="detail-container">
+
+  <p class="back-btn" [routerLink]="['/home']">< Volver</p>
+
+  <div class="pub-info-card">
+    <div class="pub-info-header">
+      <div class="header-left">
+        <p class="header-name">Juan Gomez</p>
+        <img src="/assets/icons/user-avatar.svg" alt="user">
+      </div>
+      <div class="header-right">
+        <p class="profile-btn">Ver perfil</p>
+        <p class="qualification-btn">Ver sus calificaciones</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="pub-info-body">
+      <div class="info-item">
+        <p class="info-title">¿Qué busca?</p>
+        <p class="info-answer">Martillo</p>
+      </div>
+      <div class="info-item">
+        <p class="info-title">Antes de:</p>
+        <p class="info-answer">10/11/2021</p>
+      </div>
+      <div class="info-item">
+        <p class="info-title">¿Dónde se encuentra?</p>
+        <p class="info-answer">Palermo, CABA</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="detail-container-text">Lo tenés? <span class="blue">Ofrecelo</span></p>
+
+  <div class="offer-card">
+    <div class="offer-form">
+
+      <div class="left">
+        <span>Monto pretendido (AR$)</span>
+        <div class="input-container">
+          <input type="text" placeholder="Ej: 500.00" mask="separator.2" thousandSeparator="," [formControl]="amountControl" />
+        </div>
+
+        <span>Comentario extra</span>
+        <div class="input-container">
+          <input type="text" placeholder="Ej: Es viejo pero funciona :)" [formControl]="commentControl"/>
+        </div>
+
+        <span>Tu celular</span>
+        <div class="input-container">
+          <input type="text" placeholder="Ej: (11) 2345-6789" mask="(00) 0000-0000" [formControl]="phoneControl" />
+        </div>
+      </div>
+
+      <div class="right">
+        <span>Cargar imagen</span>
+        <div class="upload-image-section" (click)="openUploadImageWindow()">
+          <p class="upload-image-text">Hacé click para agregar una foto</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="send-offer-btn" [class.clickeable]="checkIfSendBtnClickeable()">
+      <p>Enviar propuesta</p>
+    </div>
+  </div>
+
+</div>
