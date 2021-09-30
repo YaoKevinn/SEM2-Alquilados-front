@@ -1,0 +1,73 @@
+<div class="signup-container">
+
+  <div class="step-one-section" *ngIf="step === 1">
+    <div class="row">
+      <h3 class="title">Registrarte</h3>
+      <p class="step">1/3</p>
+    </div>
+
+    <span>Mail</span>
+    <div class="input-container">
+      <input type="text" placeholder="Ej: juan@mail.com" [formControl]="userControl"/>
+    </div>
+
+    <span>Contraseña</span>
+    <div class="input-container">
+      <input type="text" placeholder="Escribí tu contraseña" [formControl]="passwordControl"/>
+    </div>
+
+    <div class="login-btn" [class.clickeable]="checkSignUpBtnAvailable()" (click)="toStep(2)">
+      <p>Comenzar</p>
+    </div>
+
+    <p class="register-text">Ya tenés cuenta? <span class="underline" (click)="goToLogin()">Iniciar sesión</span></p>
+  </div>
+
+  <div class="step-two-section"  *ngIf="step === 2">
+    <div class="row">
+      <h3 class="title">Registrarte</h3>
+      <p class="step">2/3</p>
+    </div>
+
+    <span>Nombre</span>
+    <div class="input-container">
+      <input type="text" placeholder="Ingresá tu nombre" [formControl]="nameControl"/>
+    </div>
+
+    <span>Apellido</span>
+    <div class="input-container">
+      <input type="text" placeholder="Ingresá tu apellido" [formControl]="firstNameControl"/>
+    </div>
+
+    <span>Fecha de nacimiento</span>
+    <div class="input-container">
+      <input type="text" placeholder="Ingresá tu apellido" [formControl]="birthdayControl" mask="00/00/0000"/>
+    </div>
+
+    <span>Teléfono</span>
+    <div class="input-container">
+      <input type="text" placeholder="Ingresá tu apellido" [formControl]="telephoneControl"/>
+    </div>
+
+    <mat-checkbox class="box">Registrar como cuenta empresa</mat-checkbox>
+
+    <div class="login-btn" [class.clickeable]="checkStepTwoBtnAvailable()" (click)="toStep(3)">
+      <p>Comenzar</p>
+    </div>
+
+    <p class="register-text">Ya tenés cuenta? <span class="underline" (click)="goToLogin()">Iniciar sesión</span></p>
+  </div>
+
+  <div class="step-three-section"  *ngIf="step === 3">
+    <div class="successful-text-section">
+      <p>¡Bienvenido {{ nameControl.value }} 👋🏻!</p>
+      <p>Ya te registrates en <span class="blue">Alquilados</span></p>
+    </div>
+    <div class="buttons">
+      <div class="publish-btn" (click)="dialogRef.close()">
+        <p>Comenzá a explorar</p>
+      </div>
+    </div>
+  </div>
+
+</div>

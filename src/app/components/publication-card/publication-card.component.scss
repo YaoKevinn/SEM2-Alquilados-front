@@ -1,0 +1,90 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 388px;
+  height: 414px;
+  background: #FFFFFF;
+  border: 2px solid #2C2C2C;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 28px 36px;
+
+  .card-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    margin: 18px 0 38px 0;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 32px;
+      color: #000000;
+      margin-bottom: 14px;
+    }
+
+    .answer {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 32px;
+      color: #000000;
+      margin-bottom: 14px;
+    }
+  }
+
+  .buttons-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 34px;
+
+    .btn {
+      flex: 1;
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      box-sizing: border-box;
+      border-radius: 5px;
+      padding: 4px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &.yes {
+        background: #1F66CD;
+        p {
+          color: #fff;
+        }
+      }
+
+      p {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 26px;
+        color: #000000;
+      }
+    }
+  }
+}

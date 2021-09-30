@@ -1,0 +1,20 @@
+<div class="login-container">
+
+  <h3 class="title">Iniciá sesión</h3>
+
+  <span>Mail</span>
+  <div class="input-container">
+    <input type="text" placeholder="Ej: juan@mail.com" [formControl]="userControl"/>
+  </div>
+
+  <span>Contraseña</span>
+  <div class="input-container">
+    <input type="text" placeholder="Escribí tu contraseña" [formControl]="passwordControl"/>
+  </div>
+
+  <div class="login-btn" [class.clickeable]="checkLoginBtnAvailable()" (click)="login()">
+    <p>Iniciar sesión</p>
+  </div>
+
+  <p class="register-text">Aún no tenes cuenta? <span class="underline" (click)="registerBtnClicked()">Registrate</span></p>
+</div>

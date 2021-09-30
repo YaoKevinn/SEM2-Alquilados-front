@@ -1,0 +1,112 @@
+<div class="container">
+
+  <div class="navbar">
+    <img src="/assets/images/logo.svg" alt="logo" />
+    <div class="button-section">
+      <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="loginBtnClicked()">Iniciar sesión</p>
+      <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="registerBtnClicked()">Registrarse</p>
+      <p *ngIf="authService.isUserLogged" class="nav-item" (click)="signOutBtnClicked()">Cerrar sesión</p>
+    </div>
+  </div>
+
+  <div class="hero-container">
+
+    <div class="hero-info">
+      <h2 class="hero-title">Si ya sabes que no lo vas a usar dos veces... <span class="blue">alquilalo :)</span></h2>
+      <div class="item-container">
+        <div class="row">
+          <span class="hero-icon">🛠</span>
+          <p class="hero-item">Herramientas</p>
+        </div>
+        <div class="row">
+          <span class="hero-icon">🛶</span>
+          <p class="hero-item">Artículos de deporte</p>
+        </div>
+        <div class="row">
+          <span class="hero-icon">🚦</span>
+          <p class="hero-item">Sarasa</p>
+        </div>
+        <div class="row">
+          <span class="hero-icon">➕</span>
+          <p class="hero-item">Y mucho más!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-form-container">
+
+      <div class="search-form">
+
+        <!-- FORM -->
+        <div *ngIf="!showSuccessfulForm">
+
+          <h3 class="search-title">Qué necesitas alquilar?</h3>
+
+          <p class="label">Descripción</p>
+          <div class="input-container">
+            <input type="text" placeholder="Describí el producto" [formControl]="descriptionControl">
+          </div>
+
+          <p class="label">Categoría</p>
+          <div class="input-container">
+            <input type="text" placeholder="Elegí una categoría" [formControl]="categoryControl" />
+          </div>
+
+          <p class="label">Ubicación</p>
+          <div class="input-container">
+            <input type="text" placeholder="Donde estás ubicado?" [formControl]="ubicationControl" />
+          </div>
+
+          <p class="label date">Lo necesitás en alguna fecha en especial?</p>
+          <div class="date-section">
+            <div class="date-option" [class.selected]="needForSepacialDate === true" (click)="needForSepacialDate = true"><p>Sí</p></div>
+            <div class="date-option" [class.selected]="needForSepacialDate === false" (click)="needForSepacialDate = false"><p>No</p></div>
+            <div class="date-selector" *ngIf="needForSepacialDate">
+              <input matInput type="text" placeholder="01/01/2021" mask="00/00/0000" [formControl]="neededDateControl"/>
+            </div>
+          </div>
+
+          <div class="send-btn" [class.clickeable]="checkSendBtnAvailable()" (click)="sendPublication()">
+            <p>Enviar</p>
+          </div>
+
+        </div>
+
+        <!-- SUCCESSFUL FORM -->
+        <div class="succesful-form" *ngIf="showSuccessfulForm">
+          <div class="successful-text-section">
+            <p>Tu búsqueda ya fue publicada 😁</p>
+          </div>
+          <div class="buttons">
+            <div class="publish-btn" (click)="publishOtherPublication()">
+              <p>Publicar otra búsqueda</p>
+            </div>
+            <p class="view-search-btn">Ver mis búsquedas</p>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="publications-section">
+    <h2 class="publication-section-title">
+      Cerca tuyo están necesitando cosas... <br>
+      <span class="bold">Lo tenés? </span>
+      <span class="blue">Ofreceselos!</span>
+    </h2>
+    <div class="publications">
+      <app-publication-card></app-publication-card>
+      <app-publication-card></app-publication-card>
+      <app-publication-card></app-publication-card>
+      <app-publication-card></app-publication-card>
+      <app-publication-card></app-publication-card>
+      <app-publication-card></app-publication-card>
+    </div>
+  </div>
+
+</div>
