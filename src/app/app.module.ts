@@ -16,6 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { MyNeedsComponent } from './pages/my-needs/my-needs.component';
+import { OffersComponent } from './pages/offers/offers.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -32,6 +35,9 @@ const maskConfig: Partial<IConfig> = {
     AlertDialogComponent,
     SignUpComponent,
     NavbarComponent,
+    ProfilePageComponent,
+    MyNeedsComponent,
+    OffersComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +11,9 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  menuOpened: boolean = true;
 
-  constructor(public authService: AuthService,  private dialog: MatDialog) { }
+  constructor(public authService: AuthService,  private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +33,17 @@ export class NavbarComponent implements OnInit {
   }
 
   signOutBtnClicked() {
+    this.menuOpened = false;
     this.authService.isUserLogged = false;
+  }
+
+  toggleMenu() {
+    this.menuOpened = !this.menuOpened;
+  }
+
+  routeToPage(page: string) {
+    this.menuOpened = false;
+      this.router.navigate([page]);
   }
 
 }

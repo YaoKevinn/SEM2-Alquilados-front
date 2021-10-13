@@ -1,6 +1,6 @@
 <div class="detail-container">
 
-  <p class="back-btn" [routerLink]="['/home']">< Volver</p>
+  <p class="back-btn" (click)="backBtnClicked()">< Volver</p>
 
   <div class="pub-info-card">
     <div class="pub-info-header">
@@ -32,7 +32,7 @@
 
   <p class="detail-container-text">Lo tenés? <span class="blue">Ofrecelo</span></p>
 
-  <div class="offer-card">
+  <div class="offer-card" *ngIf="!showSuccessfulMessage">
     <div class="offer-form">
 
       <div class="left">
@@ -55,14 +55,28 @@
       <div class="right">
         <span>Cargar imagen</span>
         <div class="upload-image-section" (click)="openUploadImageWindow()">
-          <p class="upload-image-text">Hacé click para agregar una foto</p>
+          <p class="upload-image-text" *ngIf="!changedImage">Hacé click para agregar una foto</p>
+          <img *ngIf="changedImage" [src]="imageShown" alt="image">
+          <input
+            #fileUploadInput
+            id="image-upload"
+            type="file"
+            value=""
+            accept="image/*"
+            (change)="readImage($event)"
+          />
         </div>
       </div>
 
     </div>
-    <div class="send-offer-btn" [class.clickeable]="checkIfSendBtnClickeable()">
+    <div class="send-offer-btn" [class.clickeable]="checkIfSendBtnClickeable()" (click)="sendProposal()">
       <p>Enviar propuesta</p>
     </div>
+  </div>
+
+  <div class="sucessful-section" *ngIf="showSuccessfulMessage">
+    <p>Listo! En caso de que le interese a Juan Gomez,</p>
+    <p>se va a contactar con vos 🚀</p>
   </div>
 
 </div>

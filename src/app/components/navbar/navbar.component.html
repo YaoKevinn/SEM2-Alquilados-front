@@ -1,8 +1,28 @@
+<div class="backdrop-layer" *ngIf="menuOpened"></div>
 <div class="navbar">
   <img src="/assets/images/logo.svg" alt="logo" />
   <div class="button-section">
     <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="loginBtnClicked()">Iniciar sesión</p>
     <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="registerBtnClicked()">Registrarse</p>
-    <p *ngIf="authService.isUserLogged" class="nav-item" (click)="signOutBtnClicked()">Cerrar sesión</p>
+    <!-- <p *ngIf="authService.isUserLogged" class="nav-item" (click)="signOutBtnClicked()">Cerrar sesión</p> -->
+    <img *ngIf="authService.isUserLogged" src="/assets/icons/menu.svg" (click)="toggleMenu()" alt="icon" />
+    <div *ngIf="menuOpened" class="menu-options">
+      <div class="option" (click)="routeToPage('my-needs')">
+        <p>Mis necesidades</p>
+      </div>
+      <div class="divider"></div>
+      <div class="option" (click)="routeToPage('offers')">
+        <p>Mis ofertas</p>
+      </div>
+      <div class="divider"></div>
+      <div class="option" (click)="routeToPage('profile')">
+        <p>Mi perfil</p>
+      </div>
+      <div class="divider"></div>
+      <div class="option red" (click)="signOutBtnClicked()">
+        <p>Cerrar sesión</p>
+      </div>
+    </div>
   </div>
 </div>
+
