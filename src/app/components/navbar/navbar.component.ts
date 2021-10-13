@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  menuOpened: boolean = true;
+  menuOpened: boolean = false;
 
   constructor(public authService: AuthService,  private dialog: MatDialog, private router: Router) { }
 

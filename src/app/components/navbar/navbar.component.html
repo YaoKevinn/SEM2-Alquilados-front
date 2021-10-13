@@ -1,6 +1,6 @@
-<div class="backdrop-layer" *ngIf="menuOpened"></div>
+<div class="backdrop-layer" *ngIf="menuOpened" (click)="menuOpened = false"></div>
 <div class="navbar">
-  <img src="/assets/images/logo.svg" alt="logo" />
+  <img src="/assets/images/logo.svg" alt="logo" (click)="routeToPage('home')" />
   <div class="button-section">
     <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="loginBtnClicked()">Iniciar sesión</p>
     <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="registerBtnClicked()">Registrarse</p>
