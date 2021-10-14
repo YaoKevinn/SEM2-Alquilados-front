@@ -7,31 +7,31 @@
           </div>
           <span>Mail</span>
                 <div class="input-container">
-                  <input type="text" placeholder="juan@mail.com" mask="separator.2" thousandSeparator="," [formControl]="amountControl" />
+                  <input type="text" placeholder="juan@mail.com" [formControl]="mailControl"  />
                 </div>
           <span>Contraseña</span>
                 <div class="input-container">
-                  <input type="text" placeholder="********" mask="separator.2" thousandSeparator="," [formControl]="amountControl" />
+                  <input type="password" placeholder="********" [formControl]="passwordControl"  />
                 </div>
           <span>Nombre</span>
                 <div class="input-container">
-                  <input type="text" placeholder="Juan" mask="separator.2" thousandSeparator="," [formControl]="amountControl" />
+                  <input type="text" placeholder="Juan" [formControl]="nameControl"  />
                 </div>
           <span>Apellido</span>
                 <div class="input-container">
-                  <input type="text" placeholder="Perez" mask="separator.2" thousandSeparator="," [formControl]="amountControl" />
+                  <input type="text" placeholder="Perez" [formControl]="firstNameControl"  />
                 </div>
           <span>Fecha de nacimiento</span>
                 <div class="input-container">
-                  <input type="text" placeholder="01/01/1990" mask="separator.1" thousandSeparator="," [formControl]="amountControl" />
+                  <input type="text" placeholder="01/01/1990" [formControl]="birthdateControl"  />
                 </div>
           <span>Telefono</span>
                 <div class="input-container">
-                  <input type="text" placeholder="15098765432" mask="separator.1" thousandSeparator="," [formControl]="amountControl" />
+                  <input type="text" placeholder="15098765432" [formControl]="phoneControl" />
                 </div>
           <span>Ubicación</span>
                 <div class="input-container">
-                  <input type="text" placeholder="Palermo" mask="separator.1" thousandSeparator="," [formControl]="amountControl" />
+                  <input type="text" placeholder="Palermo" [formControl]="ubicationControl" />
                 </div>
             <div class="edit-information-btn" [class.clickeable]="checkIfSendBtnClickeable()" (click)="sendProposal()">
               <p>Enviar Informacion</p>
@@ -39,5 +39,8 @@
       </div>
       <div class="right">
         <img src="/assets/icons/user-avatar.svg" alt="user">
+        <div class="friend-btn" (click)="openFriendList()">
+          <p>Listado de amigos</p>
+        </div>
       </div>
 </div>

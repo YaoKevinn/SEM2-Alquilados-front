@@ -14,13 +14,13 @@
     border: 1px solid #B0B0B0;
     box-sizing: border-box;
     border-radius: 10px;
-  
+
     .left {
       flex: 1;
       display: flex;
       flex-direction: column;
       padding: 36px 50px 66px 50px;
-        
+
         .title {
           font-size: 30px;
           color: #000000;
@@ -72,15 +72,19 @@
           border-radius: 5px;
           padding: 8px 0;
           pointer-events: none;
-        
+
           &.clickeable {
             cursor: pointer;
             pointer-events: unset;
             opacity: 1;
-        
+
             p {
               opacity: 1;
             }
+          }
+
+          p {
+            color: #fff;
           }
         }
     }
@@ -89,14 +93,32 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+      align-items: center;
 
       img {
-        margin-left: 175px;
         margin-top: 145px;
         width: 185px;
         height: 185px;
       }
-    
+
+      .friend-btn {
+        width: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border: 1px solid #1F66CD;
+        box-sizing: border-box;
+        border-radius: 5px;
+        padding: 8px 0;
+        margin-top: 50px;
+        cursor: pointer;
+
+        p {
+          color: #1F66CD;
+          font-size: 18px;
+        }
+      }
   }
 }
 

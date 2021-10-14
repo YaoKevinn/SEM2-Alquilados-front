@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { FriendListComponent } from 'src/app/components/friend-list/friend-list.component';
 
 @Component({
   selector: 'app-perfil',
@@ -10,9 +12,13 @@ import { Router } from '@angular/router';
 export class PerfilComponent implements OnInit {
   @ViewChild('fileUploadInput') fileUploadInput: any;
 
-  amountControl: FormControl = new FormControl('', [Validators.required]);
-  commentControl: FormControl = new FormControl('', [Validators.required]);
+  mailControl: FormControl = new FormControl('', [Validators.required]);
+  passwordControl: FormControl = new FormControl('', [Validators.required]);
+  nameControl: FormControl = new FormControl('', [Validators.required]);
+  firstNameControl: FormControl = new FormControl('', [Validators.required]);
+  birthdateControl: FormControl = new FormControl('', [Validators.required]);
   phoneControl: FormControl = new FormControl('', [Validators.required]);
+  ubicationControl: FormControl = new FormControl('', [Validators.required]);
 
   fileBase64: string = '';
   imageShown: any;
@@ -20,7 +26,7 @@ export class PerfilComponent implements OnInit {
 
   showSuccessfulMessage = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -33,9 +39,13 @@ export class PerfilComponent implements OnInit {
 
   checkIfSendBtnClickeable() {
     if (
-      this.amountControl.valid &&
-      this.commentControl.valid &&
-      this.phoneControl.valid
+      this.mailControl.valid &&
+      this.passwordControl.valid &&
+      this.nameControl.valid &&
+      this.firstNameControl.valid &&
+      this.birthdateControl.valid &&
+      this.phoneControl.valid &&
+      this.ubicationControl.valid
     ) {
       return true;
     }
@@ -67,6 +77,13 @@ export class PerfilComponent implements OnInit {
 
   sendProposal() {
     this.showSuccessfulMessage = true;
+  }
+
+  openFriendList() {
+    this.dialog.open(FriendListComponent, {
+      panelClass: 'user-modal-container',
+      backdropClass: 'modal-backdrop',
+    })
   }
 
 }

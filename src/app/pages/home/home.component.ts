@@ -44,10 +44,6 @@ export class HomeComponent implements OnInit {
       this.allPublications = data;
     });
     this.setHeroTitle();
-    // this.dialog.open(FriendListComponent, {
-    //   panelClass: 'user-modal-container',
-    //   backdropClass: 'modal-backdrop',
-    // })
   }
 
   setHeroTitle() {

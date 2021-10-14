@@ -1,3 +1,4 @@
+import { PerfilComponent } from './pages/perfil/perfil.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
@@ -16,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { MyNeedsComponent } from './pages/my-needs/my-needs.component';
 import { OffersComponent } from './pages/offers/offers.component';
 import { QualificationDialogComponent } from './components/qualification-dialog/qualification-dialog.component';
@@ -38,12 +38,12 @@ const maskConfig: Partial<IConfig> = {
     AlertDialogComponent,
     SignUpComponent,
     NavbarComponent,
-    ProfilePageComponent,
     MyNeedsComponent,
     OffersComponent,
     QualificationDialogComponent,
     FriendListComponent,
     ProfileDialogComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
