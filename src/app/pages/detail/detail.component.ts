@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ProfileDialogComponent } from 'src/app/profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-detail',
@@ -31,6 +32,13 @@ export class DetailComponent implements OnInit {
   backBtnClicked() {
     this.showSuccessfulMessage = false;
     this.router.navigate(['/home']);
+  }
+
+  profileDialogBtnClicked() {
+    this.dialog.open(ProfileDialogComponent, {
+      panelClass: 'modal-container',
+      backdropClass: 'modal-backdrop',
+    })
   }
 
   checkIfSendBtnClickeable() {

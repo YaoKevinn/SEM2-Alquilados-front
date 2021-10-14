@@ -1,0 +1,138 @@
+.profile-dialog-container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  max-height: 500px;
+
+  .profile-info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header-left {
+      display: flex;
+      align-items: center;
+
+      .header-name {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 25px;
+        line-height: 32px;
+        color: #000000;
+      }
+
+      img {
+        margin-left: 22px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      .qualification-btn {
+        cursor: pointer;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        text-decoration-line: underline;
+        color: #1f66cd;
+      }
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    margin: 18px 0 30px 0;
+  }
+
+  .title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 32px;
+    color: #2068cd;
+    margin-bottom: 33px;
+  }
+
+  span {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 26px;
+    color: #000000;
+    margin-bottom: 5px;
+  }
+
+  .profile-info-body {
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 50px;
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      .info-title {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 32px;
+        color: #000000;
+      }
+
+      .info-answer {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 32px;
+        color: #000000;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  .close-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2068cd;
+    opacity: 0.7;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 8px 0;
+    margin-top: 30px;
+
+    &.clickeable {
+      cursor: pointer;
+      pointer-events: unset;
+      opacity: 1;
+
+      p {
+        opacity: 1;
+      }
+    }
+
+    p {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 26px;
+      text-align: center;
+      color: #ffffff;
+      opacity: 0.7;
+    }
+  }
+}

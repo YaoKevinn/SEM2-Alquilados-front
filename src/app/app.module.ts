@@ -21,6 +21,7 @@ import { MyNeedsComponent } from './pages/my-needs/my-needs.component';
 import { OffersComponent } from './pages/offers/offers.component';
 import { QualificationDialogComponent } from './components/qualification-dialog/qualification-dialog.component';
 import { FriendListComponent } from './components/friend-list/friend-list.component';
+import { ProfileDialogComponent } from './profile-dialog/profile-dialog.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -42,6 +43,7 @@ const maskConfig: Partial<IConfig> = {
     OffersComponent,
     QualificationDialogComponent,
     FriendListComponent,
+    ProfileDialogComponent,
   ],
   imports: [
     BrowserModule,

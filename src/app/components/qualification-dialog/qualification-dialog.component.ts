@@ -1,5 +1,6 @@
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { ProfileDialogComponent } from 'src/app/profile-dialog/profile-dialog.component';
 
 @Component({
   selector: 'app-qualification-dialog',
@@ -8,12 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QualificationDialogComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<QualificationDialogComponent>) { }
+  constructor(private dialogRef: MatDialogRef<QualificationDialogComponent>, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   closeBtnClicked() {
     this.dialogRef.close();
+  }
+
+  profileDialogBtnClicked() {
+    this.dialogRef.close();
+    this.dialog.open(ProfileDialogComponent, {
+      panelClass: 'modal-container',
+      backdropClass: 'modal-backdrop',
+    })
   }
 }
