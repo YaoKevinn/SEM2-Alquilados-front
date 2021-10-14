@@ -46,6 +46,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 74px 78px;
 }
 
+.user-modal-container {
+  background: #FFFFFF;
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 36px 50px;
+}
+
 .modal-backdrop{
   background-color: transparent;
   backdrop-filter: blur(15px);

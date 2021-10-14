@@ -1,3 +1,4 @@
+import { FriendListComponent } from './../../components/friend-list/friend-list.component';
 import { PublicationService } from './../../services/publication.service';
 import { AuthService } from './../../services/auth.service';
 import { LoginComponent } from './../../components/login/login.component';
@@ -34,6 +35,10 @@ export class HomeComponent implements OnInit {
     this.publicationService.allPublications.subscribe((data) => {
       this.allPublications = data;
     });
+    // this.dialog.open(FriendListComponent, {
+    //   panelClass: 'user-modal-container',
+    //   backdropClass: 'modal-backdrop',
+    // })
   }
 
   checkSendBtnAvailable() {

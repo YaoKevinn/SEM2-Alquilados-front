@@ -1,0 +1,29 @@
+<div class="dialog-container">
+
+  <div class="qualification-info-header">
+    <div class="header-left">
+      <p class="header-name">Juan Gomez</p>
+      <img src="/assets/icons/user-avatar.svg" alt="user">
+    </div>
+    <div class="header-right">
+      <p class="profile-btn">Ver perfil</p>
+    </div>
+  </div>
+
+  <div class="qualification-body">
+    <div class="qualification" *ngFor="let user of ['', '', '', '', '']">
+      <div class="row">
+        <p class="name">Maria Sanchez</p>
+        <img src="/assets/icons/user-avatar.svg" alt="user">
+      </div>
+      <p class="score"><span class="bold">Calificación:</span> ⭐️⭐️⭐️⭐</p>
+      <p class="review"><span class="bold">Reseñas:</span> Me devolvió todo en tiempo y forma</p>
+      <div class="separator"></div>
+    </div>
+  </div>
+
+  <div class="close-btn" (click)="closeBtnClicked()">
+    <p>Cerrar</p>
+  </div>
+
+</div>

@@ -1,5 +1,7 @@
+import { QualificationDialogComponent } from './../../components/qualification-dialog/qualification-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +22,7 @@ export class DetailComponent implements OnInit {
 
   showSuccessfulMessage = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -69,4 +71,10 @@ export class DetailComponent implements OnInit {
     this.showSuccessfulMessage = true;
   }
 
+  openQualificationDialog() {
+    this.dialog.open(QualificationDialogComponent, {
+      panelClass: 'user-modal-container',
+      backdropClass: 'modal-backdrop',
+    })
+  }
 }

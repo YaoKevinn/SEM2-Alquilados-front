@@ -19,6 +19,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { MyNeedsComponent } from './pages/my-needs/my-needs.component';
 import { OffersComponent } from './pages/offers/offers.component';
+import { QualificationDialogComponent } from './components/qualification-dialog/qualification-dialog.component';
+import { FriendListComponent } from './components/friend-list/friend-list.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -38,6 +40,8 @@ const maskConfig: Partial<IConfig> = {
     ProfilePageComponent,
     MyNeedsComponent,
     OffersComponent,
+    QualificationDialogComponent,
+    FriendListComponent,
   ],
   imports: [
     BrowserModule,
