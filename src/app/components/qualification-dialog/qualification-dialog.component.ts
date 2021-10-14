@@ -21,7 +21,7 @@ export class QualificationDialogComponent implements OnInit {
   profileDialogBtnClicked() {
     this.dialogRef.close();
     this.dialog.open(ProfileDialogComponent, {
-      panelClass: 'modal-container',
+      panelClass: 'user-modal-container',
       backdropClass: 'modal-backdrop',
     })
   }

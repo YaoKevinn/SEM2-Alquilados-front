@@ -36,7 +36,7 @@ export class DetailComponent implements OnInit {
 
   profileDialogBtnClicked() {
     this.dialog.open(ProfileDialogComponent, {
-      panelClass: 'modal-container',
+      panelClass: 'user-modal-container',
       backdropClass: 'modal-backdrop',
     })
   }
