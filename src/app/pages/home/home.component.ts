@@ -3,7 +3,7 @@ import { PublicationService } from './../../services/publication.service';
 import { AuthService } from './../../services/auth.service';
 import { LoginComponent } from './../../components/login/login.component';
 import { AlertDialogComponent } from './../../components/alert-dialog/alert-dialog.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SignUpComponent } from 'src/app/components/sign-up/sign-up.component';
@@ -14,7 +14,11 @@ import { SignUpComponent } from 'src/app/components/sign-up/sign-up.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('homeFileUploadInput') homeFileUploadInput: any;
 
+  heroTitle: string = '';
+  secondaryHeroTitle: string = '';
+  isRenting: boolean = true;
   showSuccessfulForm = false;
 
   descriptionControl: FormControl = new FormControl('', [Validators.required]);
@@ -22,6 +26,10 @@ export class HomeComponent implements OnInit {
   ubicationControl: FormControl = new FormControl('', [Validators.required]);
   neededDateControl: FormControl = new FormControl('');
   needForSepacialDate: any = null;
+
+  fileBase64: string = '';
+  imageShown: any;
+  changedImage = false;
 
   allPublications: any[] = [];
 
@@ -35,10 +43,21 @@ export class HomeComponent implements OnInit {
     this.publicationService.allPublications.subscribe((data) => {
       this.allPublications = data;
     });
+    this.setHeroTitle();
     // this.dialog.open(FriendListComponent, {
     //   panelClass: 'user-modal-container',
     //   backdropClass: 'modal-backdrop',
     // })
+  }
+
+  setHeroTitle() {
+    if (this.isRenting) {
+      this.heroTitle = 'Si ya sabes que no lo vas a usar dos veces... ';
+      this.secondaryHeroTitle = 'alquilalo :)'
+    } else {
+      this.heroTitle = 'Si tenés algo en casa que no lo usás frecuente... ';
+      this.secondaryHeroTitle = 'ponelo en alquiler :)'
+    }
   }
 
   checkSendBtnAvailable() {
@@ -54,11 +73,14 @@ export class HomeComponent implements OnInit {
   }
 
   sendPublication() {
-    this.dialog.open(AlertDialogComponent, {
-      panelClass: 'modal-container',
-      backdropClass: 'modal-backdrop',
-    })
-    this.showSuccessfulForm = true;
+    if (!this.authService.isUserLogged) {
+      this.dialog.open(AlertDialogComponent, {
+        panelClass: 'modal-container',
+        backdropClass: 'modal-backdrop',
+      })
+    } else {
+      this.showSuccessfulForm = true;
+    }
   }
 
   publishOtherPublication() {
@@ -68,5 +90,33 @@ export class HomeComponent implements OnInit {
     this.neededDateControl.setValue('');
     this.needForSepacialDate = null;
     this.showSuccessfulForm = false;
+  }
+
+  toggleOperationType(operation: string) {
+    this.isRenting = operation === 'buy';
+    this.setHeroTitle();
+  }
+
+  openUploadImageWindow() {
+    this.homeFileUploadInput.nativeElement.click();
+  }
+
+  readImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (onloadEvent: any) => {
+        this.fileBase64 = onloadEvent.target.result;
+        // Result image
+        this.imageShown = onloadEvent.target.result;
+        this.changedImage = true;
+        console.log()
+      };
+      reader.onerror = (err) => {
+        console.log(err);
+        this.changedImage = false;
+        event.target.value = '';
+      };
+    }
   }
 }
