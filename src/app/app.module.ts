@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import { PublicationCardComponent } from './components/publication-card/publication-card.component';
+import { NeedCardComponent } from './components/need-card/need-card.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
@@ -34,6 +35,7 @@ const maskConfig: Partial<IConfig> = {
     LoginComponent,
     DetailComponent,
     PublicationCardComponent,
+    NeedCardComponent,
     FooterComponent,
     AlertDialogComponent,
     SignUpComponent,

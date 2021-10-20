@@ -1,1 +1,25 @@
-<p>my-needs works!</p>
+<div class="container">
+    <div class="publications-section">
+        <h2 class="publication-section-title">
+        Podes revisar todo tu historial de movimientos en Alquila2<br>
+        <span class="blue">Vamos por más? </span>
+        </h2>
+        <div class="choiceContainer">
+            <div class="choice">
+            <div class="circle" [class.showCompleted]="showCompleted"></div>
+            <div class="pill" [ngClass]="{ active: showCompleted }" (click)="toggleFilter()">
+              <p [class.active]="showCompleted">Activos</p>
+            </div>
+            <div class="pill" [ngClass]="{ active: !showCompleted }" (click)="toggleFilter()">
+              <p [class.active]="!showCompleted">Finalizados</p>
+            </div>
+          </div>
+        </div>
+        <div class="publications">
+        <app-need-card
+            *ngFor="let need of allNeeds"
+            [neeData]="need"
+        ></app-need-card>
+        </div>
+    </div>
+</div>

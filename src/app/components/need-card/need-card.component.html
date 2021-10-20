@@ -1,0 +1,26 @@
+
+<div class="card-container">
+
+  <div class="card-header">
+    <p>{{ neeData.nombre }} {{ neeData.apellido }}</p>
+    <img src="/assets/icons/user-avatar.svg" alt="user">
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="product-info">
+
+    <p class="title">Qué busca? </p>
+    <p class="answer">{{ neeData.descripcion }}</p>
+
+    <p class="title">Antes de:</p>
+    <p class="answer">{{ neeData.fecha_limite }}</p>
+
+  </div>
+
+  <div class="buttons-section">
+    <div *ngIf="neeData.finalizado === false" class="btn success"><p>Aún no lo tengo</p></div>
+    <div *ngIf="neeData.finalizado === true" class="btn yes"><p>Completada!</p></div>
+  </div>
+
+</div>
