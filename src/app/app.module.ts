@@ -23,6 +23,9 @@ import { OffersComponent } from './pages/offers/offers.component';
 import { QualificationDialogComponent } from './components/qualification-dialog/qualification-dialog.component';
 import { FriendListComponent } from './components/friend-list/friend-list.component';
 import { ProfileDialogComponent } from './profile-dialog/profile-dialog.component';
+import { NeedsDetailComponent } from './pages/my-needs/needs-detail/needs-detail.component';
+import { ConfirmOfferDialogComponent } from './pages/my-needs/confirm-offer-dialog/confirm-offer-dialog.component';
+import { NeedsContactComponent } from './pages/my-needs/needs-contact/needs-contact.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -45,7 +48,10 @@ const maskConfig: Partial<IConfig> = {
     QualificationDialogComponent,
     FriendListComponent,
     ProfileDialogComponent,
-    PerfilComponent
+    PerfilComponent,
+    NeedsDetailComponent,
+    ConfirmOfferDialogComponent,
+    NeedsContactComponent
   ],
   imports: [
     BrowserModule,

@@ -22,8 +22,8 @@ export class NeedCardComponent implements OnInit {
     );
   }
 
-  goToDetail() {
-    this.router.navigate(['/detail']);
+  goToNeedsDetail() {
+    this.router.navigate(['/my-needs-detail']);
   }
 
 }

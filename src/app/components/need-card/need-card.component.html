@@ -19,7 +19,8 @@
   </div>
 
   <div class="buttons-section">
-    <div *ngIf="neeData.finalizado === false" class="btn success"><p>Aún no lo tengo</p></div>
+    <div *ngIf="neeData.finalizado === false" class="btn success"><p>Ya no lo necesito</p></div>
+    <div *ngIf="neeData.finalizado === false" class="btn completed" (click)="goToNeedsDetail()"><p>Detalle</p></div>
     <div *ngIf="neeData.finalizado === true" class="btn yes"><p>Completada!</p></div>
   </div>
 

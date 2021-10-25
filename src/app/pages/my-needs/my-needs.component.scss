@@ -3,13 +3,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0 5% 3% 5%;
-    background: url('/assets/images/home-bg.svg');
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: 0px;
-  
-  
+
     // HERO
     .hero-container {
       flex: 1;
@@ -18,7 +12,7 @@
       align-items: center;
       height: 800px;
       margin: 8% 0;
-  
+
       // HERO - MAIN TEXT
       .hero-info {
         flex: 1;
@@ -27,33 +21,33 @@
         align-items: flex-start;
         justify-content: center;
         margin-right: 5%;
-  
+
         .hero-title {
           font-weight: 600;
           font-size: 35px;
           line-height: 45px;
           color: #000000;
-  
+
           .blue {
             color: #2068CD;
           }
         }
-  
+
         .item-container {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           margin-top: 40px;
-  
+
           .row {
             display: flex;
             align-items: center;
-  
+
             .hero-icon {
               width: 40px;
               font-size: 25px;
             }
-  
+
             .hero-item {
               font-style: normal;
               font-weight: normal;
@@ -61,20 +55,20 @@
               line-height: 32px;
               color: #000000;
             }
-  
+
           }
-  
+
         }
-  
+
       }
-  
+
       // HERO - SEARCH FORM
       .search-form-container {
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-  
+
         .search-form {
           display: flex;
           flex-direction: column;
@@ -87,7 +81,7 @@
           position: relative;
           left: 60px;
           top: 30px;
-  
+
           .choice {
             z-index: 2;
             display: flex;
@@ -97,7 +91,7 @@
             height: 56px;
             margin: 10px 0px;
             position: relative;
-  
+
             .circle {
               position: absolute;
               width: 50%;
@@ -108,7 +102,7 @@
               right: 6px;
               transition: all 200ms ease-in-out;
               box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1);
-  
+
               &.isRenting {
                 transform: translateX(-94%);
                 -webkit-transform: translateX(-94%);
@@ -117,7 +111,7 @@
                 -o-transform: translateX(-94%);
               }
             }
-  
+
             .pill {
               display: flex;
               flex-direction: column;
@@ -126,13 +120,13 @@
               flex: 1;
               cursor: pointer;
               z-index: 2;
-  
+
               p {
                 font-size: 18px;
               }
             }
           }
-  
+
           .search-title {
             font-style: normal;
             font-weight: 600;
@@ -141,7 +135,7 @@
             color: #000000;
             margin-bottom: 26px;
           }
-  
+
           .label {
             font-style: normal;
             font-weight: normal;
@@ -149,12 +143,12 @@
             line-height: 26px;
             color: #000000;
             margin-bottom: 5px;
-  
+
             &.date {
               margin-bottom: 22px;
             }
           }
-  
+
           .upload-image-section {
             flex: 1;
             display: flex;
@@ -167,7 +161,7 @@
             margin: 22px 0 25px 0;
             height: 84px;
             cursor: pointer;
-  
+
             .upload-image-text {
               font-style: normal;
               font-weight: normal;
@@ -177,17 +171,17 @@
               color: #545353;
               text-align: center;
             }
-  
+
             img {
               height: 100%;
               object-fit: contain;
             }
-  
+
             input {
               display: none;
             }
           }
-  
+
           .input-container {
             display: flex;
             align-content: center;
@@ -198,11 +192,11 @@
             box-sizing: border-box;
             border-radius: 10px;
             margin-bottom: 15px;
-  
+
             &:last-of-type {
               margin-bottom: 26px;
             }
-  
+
             input {
               width: 100%;
               border: none;
@@ -214,13 +208,13 @@
               color: #000;
             }
           }
-  
+
           .date-section {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 32px;
-  
+
             .date-option {
               display: flex;
               align-content: center;
@@ -231,7 +225,7 @@
               box-sizing: border-box;
               border-radius: 5px;
               cursor: pointer;
-  
+
               &.selected {
                 background: #2068CD;
                 cursor: pointer;
@@ -239,7 +233,7 @@
                   color: #fff;
                 }
               }
-  
+
               p {
                 font-style: normal;
                 font-weight: normal;
@@ -248,7 +242,7 @@
                 color: #000000;
               }
             }
-  
+
             .date-selector {
               width: 140px;
               display: flex;
@@ -259,7 +253,7 @@
               border: 1px solid #000000;
               box-sizing: border-box;
               border-radius: 5px;
-  
+
               input {
                 width: 108px;
                 border: none;
@@ -272,7 +266,7 @@
               }
             }
           }
-  
+
           .send-btn {
             width: 100%;
             display: flex;
@@ -285,7 +279,7 @@
             border-radius: 5px;
             padding: 8px 0;
             pointer-events: none;
-  
+
             &.clickeable {
               cursor: pointer;
               pointer-events: unset;
@@ -294,7 +288,7 @@
                 opacity: 1;
               }
             }
-  
+
             p {
               font-style: normal;
               font-weight: 600;
@@ -305,19 +299,19 @@
               opacity: 0.7;
             }
           }
-  
+
           .succesful-form {
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 500px;
-  
+
             .successful-text-section {
               flex: 1;
               display: flex;
               justify-content: center;
               align-items: center;
-  
+
               p {
                 font-style: normal;
                 font-weight: 500;
@@ -327,13 +321,13 @@
                 color: #000000;
               }
             }
-  
+
             .buttons {
               display: flex;
               flex-direction: column;
               align-items: center;
               margin-bottom: 50px;
-  
+
               .publish-btn {
                 background: #2068CD;
                 border: 1px solid #000000;
@@ -341,7 +335,7 @@
                 border-radius: 5px;
                 padding: 8px 16px;
                 cursor: pointer;
-  
+
                 p {
                   font-style: normal;
                   font-weight: normal;
@@ -351,24 +345,24 @@
                   color: #FFFFFF;
                 }
               }
-  
+
               .view-search-btn {
                 cursor: pointer;
                 margin-top: 10px;
                 text-decoration: underline;
                 font-size: 20px;
               }
-  
+
             }
           }
-  
+
         }
-  
+
       }
-  
-  
+
+
     }
-  
+
     // PUBLICACION - MAIN
     .publications-section {
       width: 100%;
@@ -379,14 +373,11 @@
       .choiceContainer {
         display: flex;
         flex-direction: column;
-        padding: 5%;
-        width: 500px;
+        width: 400px;
         box-sizing: border-box;
         border-radius: 10px;
-        position: relative;
-        right: 60px;
         margin-left: auto;
-      
+
         .choice {
           z-index: 2;
           display: flex;
@@ -434,21 +425,21 @@
       .publication-section-title {
         font-style: normal;
         font-weight: normal;
-        font-size: 35px;
+        font-size: 28px;
         line-height: 45px;
         color: #000000;
-  
+
         .bold {
           font-weight: bold;
         }
-  
+
         .blue {
           font-weight: bold;
           color: #2068CD;
         }
-  
+
       }
-  
+
       .publications {
         max-width: 1500px;
         width: 100%;
@@ -458,8 +449,12 @@
         margin: 60px auto 0 auto;
         flex-wrap: wrap;
       }
-  
+
     }
-  
+
   }
-  
+
+  .row {
+    display: flex;
+    align-items: center;
+  }
