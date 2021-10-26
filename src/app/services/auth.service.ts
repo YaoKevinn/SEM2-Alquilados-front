@@ -7,22 +7,22 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  // private _loggedUser: User = undefined;
-  // private _isUserLogged: boolean = false;
+  private _loggedUser: User = undefined;
+  private _isUserLogged: boolean = false;
 
-  private _loggedUser: User = {
-    id: 1,
-    nombre: "Leandro!",
-    apellido: "Tórtora",
-    email: "tortoraleandro@gmail.com",
-    fecha_nacimiento: "1997-02-01",
-    telefono: "222222",
-    latitud: 0,
-    longitud: 0,
-    is_empresa: false,
-    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNTIyOTc3NSwiZXhwIjoxNjM1ODM0NTc1fQ.XQueY491dJ54FBJaH6K2Xt-ptSaQM9JL7-M2qLUJQWc"
-  }
-  private _isUserLogged: boolean = true;
+  // private _loggedUser: User = {
+  //   id: 1,
+  //   nombre: "Leandro!",
+  //   apellido: "Tórtora",
+  //   email: "tortoraleandro@gmail.com",
+  //   fecha_nacimiento: "1997-02-01",
+  //   telefono: "222222",
+  //   latitud: 0,
+  //   longitud: 0,
+  //   is_empresa: false,
+  //   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYzNTIyOTc3NSwiZXhwIjoxNjM1ODM0NTc1fQ.XQueY491dJ54FBJaH6K2Xt-ptSaQM9JL7-M2qLUJQWc"
+  // }
+  // private _isUserLogged: boolean = true;
 
   constructor(private apiService: ApiService) { }
 
