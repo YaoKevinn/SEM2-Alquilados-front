@@ -11,6 +11,8 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 })
 export class LoginComponent implements OnInit {
 
+  loginSuccess = false;
+
   userControl: FormControl = new FormControl('', [Validators.required]);
   passwordControl: FormControl = new FormControl('', [Validators.required]);
 
@@ -38,9 +40,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.dialogRef.close();
-    this.authService.isUserLogged = true;
-    // LOGIN LOGIC
+    this.authService.login(this.userControl.value, this.passwordControl.value).subscribe((user) => {
+      this.loginSuccess = true;
+      setTimeout(() => {
+        this.dialogRef.close();
+      }, 2000);
+    })
   }
 
 

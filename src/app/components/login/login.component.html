@@ -9,12 +9,14 @@
 
   <span>Contraseña</span>
   <div class="input-container">
-    <input type="text" placeholder="Escribí tu contraseña" [formControl]="passwordControl"/>
+    <input type="password" placeholder="Escribí tu contraseña" [formControl]="passwordControl"/>
   </div>
 
-  <div class="login-btn" [class.clickeable]="checkLoginBtnAvailable()" (click)="login()">
+  <div *ngIf="!loginSuccess" class="login-btn" [class.clickeable]="checkLoginBtnAvailable()" (click)="login()">
     <p>Iniciar sesión</p>
   </div>
 
-  <p class="register-text">Aún no tenes cuenta? <span class="underline" (click)="registerBtnClicked()">Registrate</span></p>
+  <p *ngIf="!loginSuccess" class="register-text">Aún no tenes cuenta? <span class="underline" (click)="registerBtnClicked()">Registrate</span></p>
+
+  <img class="success-img" *ngIf="loginSuccess" src="/assets/icons/check.svg" alt="check" />
 </div>

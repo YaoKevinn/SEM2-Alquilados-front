@@ -20,6 +20,7 @@ export class SignUpComponent implements OnInit {
   firstNameControl: FormControl = new FormControl('', [Validators.required]);
   birthdayControl: FormControl = new FormControl('', [Validators.required]);
   telephoneControl: FormControl = new FormControl('', [Validators.required]);
+  companyControl: FormControl = new FormControl(false, [Validators.required]);
 
 
   constructor(public dialogRef: MatDialogRef<SignUpComponent>, private dialog: MatDialog, private authService: AuthService) { }
@@ -58,9 +59,28 @@ export class SignUpComponent implements OnInit {
   }
 
   toStep(stepNumber: number) {
-    this.step = stepNumber;
     if (stepNumber === 3) {
-      this.authService.isUserLogged = true;
+      // console.log(this.userControl.value);
+      // console.log(this.passwordControl.value);
+      // console.log(this.nameControl.value);
+      // console.log(this.firstNameControl.value);
+      // console.log(this.birthdayControl.value.slice(0, 2) + '/' + this.birthdayControl.value.slice(2, 4) + '/' + this.birthdayControl.value.slice(4, 8));
+      // console.log(this.telephoneControl.value);
+      // console.log(this.companyControl.value);
+      const birthdayString = this.birthdayControl.value.slice(4, 8) + '/' + this.birthdayControl.value.slice(2, 4) + '/' + this.birthdayControl.value.slice(0, 2);
+      this.authService.register(
+        this.nameControl.value,
+        this.firstNameControl.value,
+        this.userControl.value,
+        this.passwordControl.value,
+        birthdayString,
+        this.telephoneControl.value,
+        this.companyControl.value
+      ).subscribe((user) => {
+        this.step = stepNumber;
+      });
+    } else {
+      this.step = stepNumber;
     }
   }
 }

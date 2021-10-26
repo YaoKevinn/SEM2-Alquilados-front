@@ -13,7 +13,7 @@
 
     <span>Contraseña</span>
     <div class="input-container">
-      <input type="text" placeholder="Escribí tu contraseña" [formControl]="passwordControl"/>
+      <input type="password" placeholder="Escribí tu contraseña" [formControl]="passwordControl"/>
     </div>
 
     <div class="login-btn" [class.clickeable]="checkSignUpBtnAvailable()" (click)="toStep(2)">
@@ -31,25 +31,25 @@
 
     <span>Nombre</span>
     <div class="input-container">
-      <input type="text" placeholder="Ingresá tu nombre" [formControl]="nameControl"/>
+      <input type="text" placeholder="Juan" [formControl]="nameControl"/>
     </div>
 
     <span>Apellido</span>
     <div class="input-container">
-      <input type="text" placeholder="Ingresá tu apellido" [formControl]="firstNameControl"/>
+      <input type="text" placeholder="Pepito" [formControl]="firstNameControl"/>
     </div>
 
     <span>Fecha de nacimiento</span>
     <div class="input-container">
-      <input type="text" placeholder="Ingresá tu apellido" [formControl]="birthdayControl" mask="d0/M0/0000"/>
+      <input type="text" placeholder="2000/12/31" [formControl]="birthdayControl" mask="0000/00/00"/>
     </div>
 
     <span>Teléfono</span>
     <div class="input-container">
-      <input type="text" placeholder="Ingresá tu apellido" [formControl]="telephoneControl"/>
+      <input type="text" placeholder="15 1234-5678" [formControl]="telephoneControl"/>
     </div>
 
-    <mat-checkbox class="box">Registrar como cuenta empresa</mat-checkbox>
+    <mat-checkbox [formControl]="companyControl" class="box">Registrar como cuenta empresa</mat-checkbox>
 
     <div class="login-btn" [class.clickeable]="checkStepTwoBtnAvailable()" (click)="toStep(3)">
       <p>Comenzar</p>

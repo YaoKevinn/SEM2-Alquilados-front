@@ -30,6 +30,7 @@ import { NeedsContactComponent } from './pages/my-needs/needs-contact/needs-cont
 import { OfferCardComponent } from './pages/offers/offer-card/offer-card.component';
 import { OfferContactComponent } from './pages/offers/offer-contact/offer-contact.component';
 import { OfferSuccessDialogComponent } from './pages/offers/offer-success-dialog/offer-success-dialog.component';
+import { AddFriendDialogComponent } from './components/add-friend-dialog/add-friend-dialog.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -58,7 +59,8 @@ const maskConfig: Partial<IConfig> = {
     NeedsContactComponent,
     OfferCardComponent,
     OfferContactComponent,
-    OfferSuccessDialogComponent
+    OfferSuccessDialogComponent,
+    AddFriendDialogComponent
   ],
   imports: [
     BrowserModule,

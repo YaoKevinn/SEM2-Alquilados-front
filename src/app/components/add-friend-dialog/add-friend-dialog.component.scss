@@ -1,16 +1,6 @@
-.login-container {
+.container {
   display: flex;
   flex-direction: column;
-  width: 430px;
-
-  .title {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 32px;
-    color: #2068CD;
-    margin-bottom: 33px;
-  }
 
   span {
     font-style: normal;
@@ -18,7 +8,7 @@
     font-size: 20px;
     line-height: 26px;
     color: #000000;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 
   .input-container {
@@ -44,18 +34,18 @@
     }
   }
 
-  .login-btn {
+  .add-btn {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #2068CD;
+    background: #1F66CD;
     opacity: 0.7;
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 5px;
     padding: 8px 0;
-    margin-top: 30px;
+    margin-top: 10px;
     pointer-events: none;
 
     &.clickeable {
@@ -69,37 +59,7 @@
     }
 
     p {
-      font-style: normal;
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 26px;
-      text-align: center;
-      color: #FFFFFF;
-      opacity: 0.7;
+      color: #fff;
     }
   }
-
-  .success-img {
-    align-self: center;
-    width: 50px;
-    height: 50px;
-    margin: 50px 0 24px 0;
-
-  }
-
-  .register-text {
-    margin-top: 24px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 23px;
-    text-align: center;
-    color: #000000;
-
-    .underline {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  }
-
 }

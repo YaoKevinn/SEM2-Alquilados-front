@@ -1,0 +1,11 @@
+<div class="container">
+  <span>Agregar un nuevo amigo con su teléfono: </span>
+
+  <div class="input-container">
+    <input type="text" placeholder="15 1234-5678" [formControl]="phoneControl"/>
+  </div>
+
+  <div class="add-btn" [class.clickeable]="phoneControl.valid" (click)="addFriend()">
+    <p>Agregar amigo</p>
+  </div>
+</div>

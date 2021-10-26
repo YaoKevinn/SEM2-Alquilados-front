@@ -3,18 +3,22 @@
   <div class="qualification-info-header">
     <div class="header-left">
       <p class="header-name">Listado de amigos</p>
+      <div class="new-friend-btn" (click)="addFriend()">
+        <img src="/assets/icons/add.svg" alt="add" />
+        <p>Nuevo amigo</p>
+      </div>
     </div>
   </div>
 
   <div class="qualification-body">
-    <div class="qualification" *ngFor="let user of ['', '', '', '', '']">
+    <div class="qualification" *ngFor="let user of data.friends">
       <div class="row">
         <div class="left">
           <img class="user-avatar" src="/assets/icons/user-avatar.svg" alt="user">
-          <p class="name">Maria Sanchez</p>
-          <p class="mail">test@test.com</p>
+          <p class="name">{{ user.nombre }} {{ user.apellido }}</p>
+          <p class="mail">{{ user.email }}</p>
         </div>
-        <img class="delete-icon" src="/assets/icons/delete.svg" alt="delete" />
+        <img (click)="deleteFriend(user.telefono)" class="delete-icon" src="/assets/icons/delete.svg" alt="delete" />
       </div>
       <div class="separator"></div>
     </div>
