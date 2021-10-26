@@ -5,6 +5,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,9 @@ import { ProfileDialogComponent } from './profile-dialog/profile-dialog.componen
 import { NeedsDetailComponent } from './pages/my-needs/needs-detail/needs-detail.component';
 import { ConfirmOfferDialogComponent } from './pages/my-needs/confirm-offer-dialog/confirm-offer-dialog.component';
 import { NeedsContactComponent } from './pages/my-needs/needs-contact/needs-contact.component';
+import { OfferCardComponent } from './pages/offers/offer-card/offer-card.component';
+import { OfferContactComponent } from './pages/offers/offer-contact/offer-contact.component';
+import { OfferSuccessDialogComponent } from './pages/offers/offer-success-dialog/offer-success-dialog.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -51,7 +55,10 @@ const maskConfig: Partial<IConfig> = {
     PerfilComponent,
     NeedsDetailComponent,
     ConfirmOfferDialogComponent,
-    NeedsContactComponent
+    NeedsContactComponent,
+    OfferCardComponent,
+    OfferContactComponent,
+    OfferSuccessDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +69,7 @@ const maskConfig: Partial<IConfig> = {
     BrowserAnimationsModule,
     MatDialogModule,
     MatCheckboxModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

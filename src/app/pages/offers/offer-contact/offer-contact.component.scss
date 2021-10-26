@@ -101,5 +101,34 @@
       }
     }
 
+    .btn {
+      width: 300px;
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      box-sizing: border-box;
+      border-radius: 5px;
+      padding: 4px 16px;
+      margin-top: 50px;
+      display: flex;
+      align-self: center;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &.yes {
+        background: #1F66CD;
+        p {
+          color: #fff;
+        }
+      }
+
+      p {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 26px;
+        color: #000000;
+      }
+    }
   }
 }

@@ -1,3 +1,4 @@
+import { OfferContactComponent } from './pages/offers/offer-contact/offer-contact.component';
 import { NeedsDetailComponent } from './pages/my-needs/needs-detail/needs-detail.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { OffersComponent } from './pages/offers/offers.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'my-needs-detail', component: NeedsDetailComponent },
   { path: 'my-needs-contact', component: NeedsContactComponent },
   { path: 'offers', component: OffersComponent },
+  { path: 'offers-contact', component: OfferContactComponent },
   { path: '**', redirectTo: 'home' }
 ];
 

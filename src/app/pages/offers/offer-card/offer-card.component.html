@@ -1,0 +1,30 @@
+
+<div class="card-container">
+
+  <div class="card-header">
+    <p>{{ neeData.nombre }} {{ neeData.apellido }}</p>
+    <img src="/assets/icons/user-avatar.svg" alt="user">
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="product-info">
+
+    <p class="title">Quien lo necesita? </p>
+    <p class="answer">Maria Sanchez</p>
+
+    <p class="title">Que busca:</p>
+    <p class="answer">{{ neeData.descripcion }}</p>
+
+    <p class="title">Estado:</p>
+    <p class="answer">Aceptado</p>
+
+  </div>
+
+  <div class="buttons-section">
+    <div *ngIf="neeData.finalizado === false" class="btn success"><p>Finalizar</p></div>
+    <div *ngIf="neeData.finalizado === false" class="btn completed" (click)="goToOfferContact()"><p>Detalle</p></div>
+    <div *ngIf="neeData.finalizado === true" class="btn yes"><p>Cancelar oferta</p></div>
+  </div>
+
+</div>

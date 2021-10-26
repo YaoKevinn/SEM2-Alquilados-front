@@ -1,1 +1,26 @@
-<p>offers works!</p>
+<div class="container">
+  <div class="publications-section">
+      <div class="row">
+        <h2 class="publication-section-title">
+         Mis ofrecimientos
+        </h2>
+         <div class="choiceContainer">
+          <div class="choice">
+          <div class="circle" [class.showCompleted]="showCompleted"></div>
+          <div class="pill" [ngClass]="{ active: showCompleted }" (click)="toggleFilter()">
+            <p [class.active]="showCompleted">Activos</p>
+          </div>
+          <div class="pill" [ngClass]="{ active: !showCompleted }" (click)="toggleFilter()">
+            <p [class.active]="!showCompleted">Finalizados</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="publications">
+      <app-offer-card
+          *ngFor="let need of allNeeds"
+          [neeData]="need"
+      ></app-offer-card>
+      </div>
+  </div>
+</div>
