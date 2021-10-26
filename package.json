@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "heroku-postbuild": "npm cache clean --force && rm -rf node_modules package-lock.json && npm run clean && npm install"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
