@@ -445,9 +445,14 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 30px;
         margin: 60px auto 0 auto;
         flex-wrap: wrap;
+
+        &.noPublications {
+          height: 29vh;
+        }
       }
 
     }

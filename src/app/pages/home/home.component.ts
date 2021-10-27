@@ -22,10 +22,13 @@ export class HomeComponent implements OnInit {
   showSuccessfulForm = false;
 
   descriptionControl: FormControl = new FormControl('', [Validators.required]);
-  categoryControl: FormControl = new FormControl('', [Validators.required]);
-  ubicationControl: FormControl = new FormControl('', [Validators.required]);
+  // categoryControl: FormControl = new FormControl('', [Validators.required]);
+  timeControl: FormControl = new FormControl('', [Validators.required]);
+  timeUnitControl: FormControl = new FormControl('días', [Validators.required]);
   neededDateControl: FormControl = new FormControl('');
   needForSepacialDate: any = null;
+  onlyFriendsControl: FormControl = new FormControl(false, [Validators.required]);
+  priceControl:FormControl = new FormControl('', [Validators.required]);
 
   fileBase64: string = '';
   imageShown: any;
@@ -57,33 +60,76 @@ export class HomeComponent implements OnInit {
   }
 
   checkSendBtnAvailable() {
-    if (
-      this.descriptionControl.valid &&
-      this.categoryControl.valid &&
-      this.ubicationControl.valid &&
-      this.neededDateControl.valid
-    ) {
-      return true;
+    if (this.isRenting) {
+      return (
+        this.descriptionControl.valid &&
+        this.timeControl.valid &&
+        this.timeUnitControl.valid &&
+        this.neededDateControl.valid
+      );
+    } else {
+      return (
+        this.descriptionControl.valid &&
+        this.timeControl.valid &&
+        this.timeUnitControl.valid &&
+        this.priceControl.valid &&
+        this.imageShown
+      )
     }
-    return false;
   }
 
-  sendPublication() {
+  sendNeedPublication() {
     if (!this.authService.isUserLogged) {
       this.dialog.open(AlertDialogComponent, {
         panelClass: 'modal-container',
         backdropClass: 'modal-backdrop',
       })
     } else {
-      this.showSuccessfulForm = true;
+      this.publicationService.createPublication(
+        this.descriptionControl.value,
+        +this.timeControl.value,
+        this.timeUnitControl.value,
+        0,
+        this.needForSepacialDate ? this.neededDateControl.value.replaceAll('/', '-') : '3000-12-31',
+        !this.onlyFriendsControl.value,
+        this.isRenting,
+        '-'
+      ).subscribe(data => {
+        this.showSuccessfulForm = true;
+      })
+    }
+  }
+
+  sendProductPublication() {
+    if (!this.authService.isUserLogged) {
+      this.dialog.open(AlertDialogComponent, {
+        panelClass: 'modal-container',
+        backdropClass: 'modal-backdrop',
+      })
+    } else {
+      this.publicationService.createPublication(
+        this.descriptionControl.value,
+        +this.timeControl.value,
+        this.timeUnitControl.value,
+        +this.priceControl.value,
+        '3000-12-31',
+        !this.onlyFriendsControl.value,
+        this.isRenting,
+        this.imageShown
+      ).subscribe(data => {
+        this.showSuccessfulForm = true;
+      })
     }
   }
 
   publishOtherPublication() {
     this.descriptionControl.setValue('');
-    this.categoryControl.setValue('');
-    this.ubicationControl.setValue('');
+    this.timeControl.setValue('');
+    this.timeUnitControl.setValue('días');
     this.neededDateControl.setValue('');
+    this.priceControl.setValue('');
+    this.onlyFriendsControl.setValue(false);
+    this.imageShown = null;
     this.needForSepacialDate = null;
     this.showSuccessfulForm = false;
   }

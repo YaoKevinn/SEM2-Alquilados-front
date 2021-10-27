@@ -49,14 +49,28 @@
             <input type="text" placeholder="Describí el producto" [formControl]="descriptionControl">
           </div>
 
-          <p class="label">Categoría</p>
+          <!-- <p class="label">Categoría</p>
           <div class="input-container">
             <input type="text" placeholder="Elegí una categoría" [formControl]="categoryControl" />
+          </div> -->
+
+          <p class="label">Tiempo</p>
+          <div class="row">
+            <div class="input-container">
+              <input type="text" placeholder="Por cuánto tiempo?" mask="999" [formControl]="timeControl" />
+            </div>
+            <mat-form-field>
+              <mat-select [formControl]="timeUnitControl">
+                <mat-option value="días">días</mat-option>
+                <mat-option value="meses">meses</mat-option>
+                <mat-option value="año">año</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
 
-          <p class="label">Ubicación</p>
-          <div class="input-container">
-            <input type="text" placeholder="Donde estás ubicado?" [formControl]="ubicationControl" />
+          <p class="label" *ngIf="!isRenting">Precio</p>
+          <div class="input-container" *ngIf="!isRenting">
+            <input type="text" placeholder="A qué precio?" mask="separator.2" thousandSeparator="," [formControl]="priceControl" />
           </div>
 
           <!-- SOLO ALQUILAR -->
@@ -65,7 +79,7 @@
             <div class="date-option" [class.selected]="needForSepacialDate === true" (click)="needForSepacialDate = true"><p>Sí</p></div>
             <div class="date-option" [class.selected]="needForSepacialDate === false" (click)="needForSepacialDate = false"><p>No</p></div>
             <div class="date-selector" *ngIf="needForSepacialDate">
-              <input matInput type="text" placeholder="01/01/2021" mask="d0/M0/0000" [formControl]="neededDateControl"/>
+              <input matInput type="text" placeholder="2000/12/31" [formControl]="neededDateControl"/>
             </div>
           </div>
 
@@ -83,7 +97,9 @@
             />
           </div>
 
-          <div class="send-btn" [class.clickeable]="checkSendBtnAvailable()" (click)="sendPublication()">
+          <mat-checkbox [formControl]="onlyFriendsControl" class="label friend">Solo mis amigos pueden ver la publicación</mat-checkbox>
+
+          <div class="send-btn" [class.clickeable]="checkSendBtnAvailable()" (click)="isRenting ? sendNeedPublication() : sendProductPublication()">
             <p>Enviar</p>
           </div>
 

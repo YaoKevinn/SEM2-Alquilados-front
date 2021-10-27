@@ -2,7 +2,7 @@
 <div class="card-container">
 
   <div class="card-header">
-    <p>{{ neeData.nombre }} {{ neeData.apellido }}</p>
+    <p>{{ neeData.user.nombre }} {{ neeData.user.apellido }}</p>
     <img src="/assets/icons/user-avatar.svg" alt="user">
   </div>
 
@@ -13,15 +13,18 @@
     <p class="title">Qué busca? </p>
     <p class="answer">{{ neeData.descripcion }}</p>
 
+    <p class="title">Tiempo:</p>
+    <p class="answer">{{ neeData.cantidad_tiempo }}  {{ neeData.unidad_tiempo }}</p>
+
     <p class="title">Antes de:</p>
     <p class="answer">{{ neeData.fecha_limite }}</p>
 
   </div>
 
   <div class="buttons-section">
-    <div *ngIf="neeData.finalizado === false" class="btn success"><p>Ya no lo necesito</p></div>
-    <div *ngIf="neeData.finalizado === false" class="btn completed" (click)="goToNeedsDetail()"><p>Detalle</p></div>
-    <div *ngIf="neeData.finalizado === true" class="btn yes"><p>Completada!</p></div>
+    <div *ngIf="neeData.activa" class="btn success" (click)="removeNeed()"><p>Ya no lo necesito</p></div>
+    <div *ngIf="neeData.activa" class="btn completed" (click)="goToNeedsDetail()"><p>Detalle</p></div>
+    <div *ngIf="!neeData.activa" class="btn yes"><p>Completada!</p></div>
   </div>
 
 </div>
