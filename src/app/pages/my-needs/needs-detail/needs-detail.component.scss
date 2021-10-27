@@ -55,6 +55,7 @@
     .offer {
       display: flex;
       flex-direction: column;
+      margin-top: 30px;
 
       .name, .amount, .extra {
         font-weight: normal;
@@ -69,6 +70,15 @@
         box-sizing: border-box;
         width: 300px;
         height: 200px;
+        overflow: hidden;
+
+        img {
+
+          &.product {
+            width: 300px;
+            object-fit: contain;
+          }
+        }
       }
 
       .buttons-section {
@@ -121,5 +131,16 @@
       }
     }
 
+    .no-offer-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 18vh;
+
+      .no-offer-text {
+        text-align: center;
+      }
+
+    }
   }
 }

@@ -19,8 +19,7 @@ export class AddFriendDialogComponent implements OnInit {
 
   addFriend() {
     this.authService.addFriend(this.phoneControl.value).subscribe((res) => {
-      console.log(res);
-      this.dialogRef.close();
+      this.dialogRef.close(res);
     });
   }
 }

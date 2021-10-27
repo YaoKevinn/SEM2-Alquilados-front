@@ -2,26 +2,26 @@
     <div class="publications-section">
         <div class="row">
           <h2 class="publication-section-title">
-            Podes revisar todo tu historial de movimientos en Alquila2<br>
-            <span class="blue">Vamos por más? </span>
+            Mis necesidades
           </h2>
            <div class="choiceContainer">
             <div class="choice">
-            <div class="circle" [class.showCompleted]="showCompleted"></div>
-            <div class="pill" [ngClass]="{ active: showCompleted }" (click)="toggleFilter()">
+            <div class="circle" [class.showCompleted]="!showCompleted"></div>
+            <div class="pill" [ngClass]="{ active: !showCompleted }" (click)="toggleFilter()">
               <p [class.active]="showCompleted">Activos</p>
             </div>
-            <div class="pill" [ngClass]="{ active: !showCompleted }" (click)="toggleFilter()">
+            <div class="pill" [ngClass]="{ active: showCompleted }" (click)="toggleFilter()">
               <p [class.active]="!showCompleted">Finalizados</p>
             </div>
           </div>
         </div>
         </div>
-        <div class="publications">
-        <app-need-card
-            *ngFor="let need of allNeeds"
-            [neeData]="need"
-        ></app-need-card>
+        <div class="publications" [class.noPublications]="allNeeds.length === 0">
+          <app-need-card
+              *ngFor="let need of allNeeds"
+              [neeData]="need"
+          ></app-need-card>
+          <p *ngIf="allNeeds.length === 0">Aún no tenés necesidad finalizada.</p>
         </div>
     </div>
 </div>

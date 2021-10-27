@@ -28,15 +28,28 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    this.authService.getFullUserInfo(this.authService.loggedUser.id).subscribe((user) => {
-      this.currentUserObj = user;
-      this.mailControl.setValue(user.email);
-      this.nameControl.setValue(user.nombre);
-      this.firstNameControl.setValue(user.apellido);
-      this.birthdateControl.setValue(user.fecha_nacimiento);
-      this.phoneControl.setValue(user.telefono);
-      // this.ubicationControl.setValue(user.email);
-    });
+    if (this.authService.isUserLogged) {
+      this.authService.getFullUserInfo(this.authService.loggedUser.value.id).subscribe((user) => {
+        this.currentUserObj = user;
+        this.mailControl.setValue(user.email);
+        this.nameControl.setValue(user.nombre);
+        this.firstNameControl.setValue(user.apellido);
+        this.birthdateControl.setValue(user.fecha_nacimiento);
+        this.phoneControl.setValue(user.telefono);
+        // this.ubicationControl.setValue(user.email);
+      });
+    } else {
+      this.authService.loggedUser.subscribe(user => {
+        if (user) {
+          this.currentUserObj = user;
+          this.mailControl.setValue(user.email);
+          this.nameControl.setValue(user.nombre);
+          this.firstNameControl.setValue(user.apellido);
+          this.birthdateControl.setValue(user.fecha_nacimiento);
+          this.phoneControl.setValue(user.telefono);
+        }
+      });
+    }
   }
 
   checkIfSendBtnClickeable() {

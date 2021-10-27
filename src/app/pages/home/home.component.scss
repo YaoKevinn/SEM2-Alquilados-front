@@ -88,6 +88,20 @@
         left: 60px;
         top: 30px;
 
+        .row {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          mat-form-field {
+            margin-bottom: 15px;
+            width: 100px;
+            position: relative;
+            top: 10px;
+          }
+        }
+
         .choice {
           z-index: 2;
           display: flex;
@@ -95,7 +109,7 @@
           border-radius: 56px;
           background-color: #ccc;
           height: 56px;
-          margin: 10px 0px;
+          margin: 10px 0px 20px 0;
           position: relative;
 
           .circle {
@@ -151,7 +165,11 @@
           margin-bottom: 5px;
 
           &.date {
-            margin-bottom: 22px;
+            margin-bottom: 10px;
+          }
+
+          &.friend {
+            margin-bottom: 26px;
           }
         }
 
@@ -200,7 +218,7 @@
           margin-bottom: 15px;
 
           &:last-of-type {
-            margin-bottom: 26px;
+            margin-bottom: 15px;
           }
 
           input {
@@ -219,7 +237,7 @@
           display: flex;
           align-items: center;
           gap: 15px;
-          margin-bottom: 32px;
+          margin-bottom: 16px;
 
           .date-option {
             display: flex;
@@ -406,4 +424,22 @@
 
   }
 
+}
+
+::ng-deep .mat-form-field-infix {
+  border: none;
+  padding-top: 0px !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: #2068CD!important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #2068CD !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1em;
 }

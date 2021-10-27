@@ -1,3 +1,4 @@
+import { PublicationService } from './../../services/publication.service';
 import { NeedService } from '../../services/need.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,19 +12,20 @@ export class NeedCardComponent implements OnInit {
 
   @Input() neeData: any;
 
-  constructor(private router: Router, private needService: NeedService) { }
+  constructor(private router: Router, private publicationService: PublicationService) { }
 
   ngOnInit(): void {
   }
 
-  filterNeeds() {
-    this.needService.allNeeds.next(
-      this.needService.allNeeds.value.filter(nee => nee.finalizado !== true)
-    );
-  }
-
   goToNeedsDetail() {
-    this.router.navigate(['/my-needs-detail']);
+    this.router.navigate(['/my-needs-detail'], { queryParams: { id: this.neeData.id } });
   }
 
+  removeNeed() {
+    const publication = {...this.neeData};
+    publication.activa = false;
+    this.publicationService.editPublication(publication).subscribe((data) => {
+      this.neeData.activa = false;
+    });
+  }
 }

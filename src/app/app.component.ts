@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sem2-alquilados-front';
+  constructor(private authService: AuthService) {
+    const lsToken = localStorage.getItem('alquila2UserToken');
+    if (lsToken) {
+      this.authService.loginWithSavedToken(lsToken);
+    }
+  }
 }

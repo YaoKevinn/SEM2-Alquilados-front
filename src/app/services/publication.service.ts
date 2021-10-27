@@ -15,6 +15,12 @@ export class PublicationService {
     totalPages: 0,
     currentPage: 0,
   });
+  private _myNeedsPublications$ = new BehaviorSubject<any[]>([]);
+  private _myNeedsPublicationsPageInfo$ = new BehaviorSubject<any>({
+    totalItems: 0,
+    totalPages: 0,
+    currentPage: 0,
+  });
 
   constructor(private apiService: ApiService) {
     this.getAllPublications(1, 6, true);
@@ -72,6 +78,14 @@ export class PublicationService {
     return this._publicationsPageInfo$;
   }
 
+  get myNeedsPublications() {
+    return this._myNeedsPublications$;
+  }
+
+  get myNeedsPublicationsPageInfo() {
+    return this._myNeedsPublicationsPageInfo$;
+  }
+
   getAllPublications(page: number, size: number, es_necesidad: boolean) {
     const obs = this.apiService.getAllPublications(page, size, es_necesidad);
     obs.subscribe((data: PublicationPageInfo) => {
@@ -84,4 +98,61 @@ export class PublicationService {
     });
     return obs;
   }
+
+  createPublication(
+    descripcion: string,
+    cantidad_tiempo: number,
+    unidad_tiempo: string,
+    precio: number,
+    fecha_limite: string,
+    ver_todos: boolean,
+    es_necesidad: boolean,
+    foto: string
+  ) {
+    const obs = this.apiService.createPublication(
+      descripcion,
+      cantidad_tiempo,
+      unidad_tiempo,
+      precio,
+      fecha_limite,
+      ver_todos,
+      es_necesidad,
+      foto
+    )
+    // obs.subscribe((data) => {
+    //   const newPublications = this._myNeedsPublications$.value;
+    //   console.log(data);
+    // });
+    return obs;
+  }
+
+  getMyPublications(page: number, size: number, es_necesidad: boolean, activa: boolean) {
+    const obs = this.apiService.getMyPublications(page, size, es_necesidad, activa);
+    obs.subscribe((data) => {
+      this._myNeedsPublications$.next(data.registros);
+      this._myNeedsPublicationsPageInfo$.next({
+        totalItems: data.totalItems,
+        totalPages: data.totalPages,
+        currentPage: data.currentPage,
+      })
+    });
+    return obs;
+  }
+
+  editPublication(publication: any) {
+    console.log('LLEGOOO')
+    const obs = this.apiService.editPublication(publication);
+    return obs;
+  }
+
+  getPublicationById(publicationId: number) {
+    const obs = this.apiService.getPublicationById(publicationId);
+    return obs;
+  }
+
+  getOffersByPublicationId(publicationId: number, page: number, size: number) {
+    const obs = this.apiService.getOffersByPublicationId(publicationId, page, size);
+    return obs;
+  }
+
 }
