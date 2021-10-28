@@ -21,7 +21,7 @@
       </div>
       <div class="info-item">
         <p class="info-title">Antes de:</p>
-        <p class="info-answer">{{ publication.fecha_limite }}</p>
+        <p class="info-answer">{{ publication.fecha_limite === '3000-12-31' ? '-' : publication.fecha_limite }}</p>
       </div>
       <div class="info-item">
         <p class="info-title">¿Por cuánto tiempo?</p>

@@ -14,7 +14,7 @@
     <p class="answer">{{ pubData.descripcion }}</p>
 
     <p class="title">Antes de:</p>
-    <p class="answer">{{ pubData.fecha_limite }}</p>
+    <p class="answer">{{ pubData.fecha_limite === '3000-12-31' ? '-' : pubData.fecha_limite }}</p>
 
   </div>
 
