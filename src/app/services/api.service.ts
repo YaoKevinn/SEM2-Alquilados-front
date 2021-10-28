@@ -44,13 +44,17 @@ export class ApiService {
       'Content-Type',
       'application/json'
     );
-    return this.http
+    const obs = this.http
       .post<User>(
         this.baseApiUrl + 'users/authenticate',
         { email, password },
         { headers }
       )
       .pipe(share());
+    obs.subscribe((user) => {
+      this.token = user.token;
+    });
+    return obs;
 
     // "id": 1,
     // "nombre": "Leandro!",
@@ -264,7 +268,12 @@ export class ApiService {
   }
 
   // publicaciones/mis_publicaciones?page=1&size=10&es_necesidad=true&activa=true
-  getMyPublications(page: number, size: number, es_necesidad: boolean, activa: boolean) {
+  getMyPublications(
+    page: number,
+    size: number,
+    es_necesidad: boolean,
+    activa: boolean
+  ) {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer ' + this.token);
@@ -279,13 +288,17 @@ export class ApiService {
 
   editPublication(publication: any) {
     const headers = new HttpHeaders()
-    .append('Content-Type', 'application/json')
-    .append('Authorization', 'Bearer ' + this.token);
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
     return this.http
-      .put<any>(this.baseApiUrl + `publicaciones/${publication.id}`, publication, {
-        headers,
-      })
-    .pipe(share());
+      .put<any>(
+        this.baseApiUrl + `publicaciones/${publication.id}`,
+        publication,
+        {
+          headers,
+        }
+      )
+      .pipe(share());
   }
 
   getPublicationById(publicationId: number) {
@@ -313,10 +326,17 @@ export class ApiService {
       .pipe(share());
   }
 
-  createOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+  createOffer(
+    publicationId: number,
+    descripcion: string,
+    cantidad_tiempo: number,
+    unidad_tiempo: string,
+    precio: number,
+    foto: string
+  ) {
     const headers = new HttpHeaders()
-    .append('Content-Type', 'application/json')
-    .append('Authorization', 'Bearer ' + this.token);
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
     return this.http
       .post<any>(
         this.baseApiUrl + `ofertas/store/${publicationId}`,
@@ -334,48 +354,62 @@ export class ApiService {
       .pipe(share());
   }
 
-  acceptOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+  acceptOffer(
+    publicationId: number,
+    descripcion: string,
+    cantidad_tiempo: number,
+    unidad_tiempo: string,
+    precio: number,
+    foto: string
+  ) {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer ' + this.token);
-      return this.http
-        .post<any>(
-          this.baseApiUrl + `ofertas/elegir_oferta/${publicationId}`,
-          {
-            descripcion,
-            categoria_id: 0,
-            cantidad_tiempo,
-            unidad_tiempo,
-            precio,
-            foto,
-          },
-          {
-            headers,
-          }
-        )
-        .pipe(share());
+    return this.http
+      .post<any>(
+        this.baseApiUrl + `ofertas/elegir_oferta/${publicationId}`,
+        {
+          descripcion,
+          categoria_id: 0,
+          cantidad_tiempo,
+          unidad_tiempo,
+          precio,
+          foto,
+        },
+        {
+          headers,
+        }
+      )
+      .pipe(share());
   }
 
-  rejectOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+  rejectOffer(
+    publicationId: number,
+    descripcion: string,
+    cantidad_tiempo: number,
+    unidad_tiempo: string,
+    precio: number,
+    foto: string
+  ) {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer ' + this.token);
-      return this.http
-        .post<any>(
-          this.baseApiUrl + `ofertas/rechazar_oferta/${publicationId}`,
-          {
-            descripcion,
-            categoria_id: 0,
-            cantidad_tiempo,
-            unidad_tiempo,
-            precio,
-            foto,
-          },
-          {
-            headers,
-          }
-        )
-        .pipe(share());
+    return this.http
+      .post<any>(
+        this.baseApiUrl + `ofertas/rechazar_oferta/${publicationId}`,
+        {
+          descripcion,
+          categoria_id: 0,
+          cantidad_tiempo,
+          unidad_tiempo,
+          precio,
+          foto,
+        },
+        {
+          headers,
+        }
+      )
+      .pipe(share());
   }
 
   getOfferById(offerId: number) {
@@ -383,11 +417,7 @@ export class ApiService {
       .append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer ' + this.token);
     return this.http
-      .get<any>(
-        this.baseApiUrl +
-          `ofertas/${offerId}`,
-        { headers }
-      )
+      .get<any>(this.baseApiUrl + `ofertas/${offerId}`, { headers })
       .pipe(share());
   }
 
@@ -395,14 +425,14 @@ export class ApiService {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer ' + this.token);
-      return this.http
-        .post<any>(
-          this.baseApiUrl + `publicaciones/reactivar/${publicationId}`,
-          {},
-          {
-            headers,
-          }
-        )
-        .pipe(share());
+    return this.http
+      .post<any>(
+        this.baseApiUrl + `publicaciones/reactivar/${publicationId}`,
+        {},
+        {
+          headers,
+        }
+      )
+      .pipe(share());
   }
 }
