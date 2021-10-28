@@ -67,7 +67,7 @@ export class SignUpComponent implements OnInit {
       // console.log(this.birthdayControl.value.slice(0, 2) + '/' + this.birthdayControl.value.slice(2, 4) + '/' + this.birthdayControl.value.slice(4, 8));
       // console.log(this.telephoneControl.value);
       // console.log(this.companyControl.value);
-      const birthdayString = this.birthdayControl.value.slice(4, 8) + '/' + this.birthdayControl.value.slice(2, 4) + '/' + this.birthdayControl.value.slice(0, 2);
+      const birthdayString = this.birthdayControl.value.replaceAll('-', '/');
       this.authService.register(
         this.nameControl.value,
         this.firstNameControl.value,

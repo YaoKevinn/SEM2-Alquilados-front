@@ -6,8 +6,17 @@
 
   <div class="needs-detail-section" *ngIf="publication">
 
-      <p class="search-text"><span class="bold">Estas buscando: </span>{{ publication.descripcion }}</p>
-      <p class="search-text">Para antes de {{ publication.fecha_limite }} por {{ publication.cantidad_tiempo }} {{ publication.unidad_tiempo }}</p>
+      <p class="search-text">
+        <span class="bold">Estas buscando: </span>
+        {{ publication.descripcion }}
+      </p>
+      <p class="search-text">
+        {{
+          publication.fecha_limite === '3000-12-31'
+            ? ''
+            : ('Para antes de ' + publication.fecha_limite)
+        }}
+        por {{ publication.cantidad_tiempo }} {{ publication.unidad_tiempo }}</p>
       <div class="divider"></div>
       <p class="offer-text"><span class="blue">{{ offers.length }}</span> ofertas recibidas</p>
 
@@ -21,8 +30,8 @@
           <img *ngIf="!(offer.foto && offer.foto.startsWith('data:'))" src="/assets/images/logo.svg" alt="product" />
         </div>
         <div class="buttons-section">
-          <div class="btn"><p>Rechazar</p></div>
-          <div class="btn blue" (click)="confirmOffer()"><p>Aceptar</p></div>
+          <div class="btn" (click)="rejectOffer(offer)"><p>Rechazar</p></div>
+          <div class="btn blue" (click)="confirmOffer(offer)"><p>Aceptar</p></div>
         </div>
         <div class="gray-divider"></div>
       </div>

@@ -155,4 +155,30 @@ export class PublicationService {
     return obs;
   }
 
+  createOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+    const obs = this.apiService.createOffer(publicationId, descripcion, cantidad_tiempo, unidad_tiempo, precio, foto);
+    return obs;
+  }
+
+  acceptOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+    const obs = this.apiService.acceptOffer(publicationId, descripcion, cantidad_tiempo, unidad_tiempo, precio, foto);
+    return obs;
+  }
+
+  rejectOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+    const obs = this.apiService.rejectOffer(publicationId, descripcion, cantidad_tiempo, unidad_tiempo, precio, foto);
+    return obs;
+  }
+
+  getOfferById(offerId: number) {
+    const obs = this.apiService.getOfferById(offerId);
+    return obs;
+  }
+
+  reactivatePublication(publicationId: number) {
+    const obs = this.apiService.reactivatePublication(publicationId);
+    return obs;
+  }
+
+
 }

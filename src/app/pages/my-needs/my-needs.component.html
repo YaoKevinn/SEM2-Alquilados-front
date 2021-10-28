@@ -21,7 +21,9 @@
               *ngFor="let need of allNeeds"
               [neeData]="need"
           ></app-need-card>
-          <p *ngIf="allNeeds.length === 0">Aún no tenés necesidad finalizada.</p>
+          <p *ngIf="allNeeds.length === 0">
+            {{ showCompleted ? 'Aún no tenés necesidad finalizada.' : 'No tenés necesidad activa.' }}
+          </p>
         </div>
     </div>
 </div>

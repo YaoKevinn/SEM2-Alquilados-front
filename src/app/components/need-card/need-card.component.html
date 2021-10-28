@@ -17,14 +17,15 @@
     <p class="answer">{{ neeData.cantidad_tiempo }}  {{ neeData.unidad_tiempo }}</p>
 
     <p class="title">Antes de:</p>
-    <p class="answer">{{ neeData.fecha_limite }}</p>
+    <p class="answer">{{ neeData.fecha_limite === '3000-12-31' ? '-' : neeData.fecha_limite }}</p>
 
   </div>
 
   <div class="buttons-section">
     <div *ngIf="neeData.activa" class="btn success" (click)="removeNeed()"><p>Ya no lo necesito</p></div>
     <div *ngIf="neeData.activa" class="btn completed" (click)="goToNeedsDetail()"><p>Detalle</p></div>
-    <div *ngIf="!neeData.activa" class="btn yes"><p>Completada!</p></div>
+    <div *ngIf="!neeData.activa" class="small"><p>Completada!</p></div>
+    <div *ngIf="!neeData.activa" class="btn completed" [class.yes]="reactivated" (click)="reactivateNeed(neeData.id)"><p>{{ reactivated ? 'Reactivada' : 'Pedir nuevamente' }}</p></div>
   </div>
 
 </div>

@@ -76,7 +76,7 @@
     display: flex;
     align-items: stretch;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
 
     .info-item {
       display: flex;
@@ -130,4 +130,8 @@
       opacity: 1;
     }
   }
+}
+
+.normal {
+  font-weight: normal !important;
 }

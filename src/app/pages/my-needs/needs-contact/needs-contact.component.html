@@ -4,26 +4,27 @@
 
   <h2 class="detail-title">Detalle de oferta</h2>
 
-  <div class="needs-detail-section">
+  <div class="needs-detail-section" *ngIf="publication && offer">
 
-      <p class="search-text">Estás buscando: <span class="bold">Martillo</span></p>
+      <p class="search-text">Estás buscando: <span class="bold">{{ publication.descripcion }}</span></p>
       <div class="divider"></div>
 
       <p class="contact-method">Detalle de oferta</p>
 
       <div class="offer">
-        <p class="name bold">María Sanchez</p>
-        <p class="amount"><span class="bold">Monto Pretendido:</span> $3000</p>
-        <p class="extra"><span class="bold">Comentario extra:</span> Lorem impsum Lorem impsum Lorem impsum Lorem impsum Lorem impsum Lorem impsum Lorem impsum Lorem impsum</p>
+        <p class="name bold">{{ offer.user.nombre }} {{ offer.user.apellido }}</p>
+        <p class="amount"><span class="bold">Monto Pretendido:</span> ${{ offer.precio }}</p>
+        <p class="extra"><span class="bold">Comentario extra:</span> {{ offer.descripcion }}</p>
         <div class="image-container">
-          <img src="/assets/images/logo.svg" alt="product" />
+          <img [src]="offer.foto" alt="product" />
         </div>
       </div>
 
       <p class="contact-method">Métodos de comunicación</p>
       <div class="row">
-        <p class="contact"><span class="bold">Teléfono:</span> +54 11 1234 5678</p>
-        <p class="whatsapp">
+        <p class="contact"><span class="bold">Email:</span> {{ offer.user.email }}</p>
+        <p class="contact"><span class="bold">Teléfono:</span> {{ offer.user.telefono }}</p>
+        <p class="whatsapp" (click)="goToWhatsapp(offer.user.telefono)">
           💬 Hablar por Whatsapp
         </p>
       </div>

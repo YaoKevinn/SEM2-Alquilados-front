@@ -79,7 +79,7 @@
             <div class="date-option" [class.selected]="needForSepacialDate === true" (click)="needForSepacialDate = true"><p>Sí</p></div>
             <div class="date-option" [class.selected]="needForSepacialDate === false" (click)="needForSepacialDate = false"><p>No</p></div>
             <div class="date-selector" *ngIf="needForSepacialDate">
-              <input matInput type="text" placeholder="2000/12/31" [formControl]="neededDateControl"/>
+              <input matInput type="text" placeholder="1999/12/31" [formControl]="neededDateControl"/>
             </div>
           </div>
 
@@ -114,7 +114,7 @@
             <div class="publish-btn" (click)="publishOtherPublication()">
               <p>Publicar otr{{ isRenting ? 'a búsqueda' : 'o producto' }}</p>
             </div>
-            <p class="view-search-btn">Ver mis {{ isRenting ? 'búsquedas' : 'productos' }}</p>
+            <p class="view-search-btn" (click)="goToMyNeeds()">Ver mis {{ isRenting ? 'necesidades' : 'productos' }}</p>
           </div>
 
         </div>

@@ -2,10 +2,10 @@
 
   <p class="back-btn" (click)="backBtnClicked()">< Volver</p>
 
-  <div class="pub-info-card">
+  <div class="pub-info-card" *ngIf="publication">
     <div class="pub-info-header">
       <div class="header-left">
-        <p class="header-name">Juan Gomez</p>
+        <p class="header-name">{{ publication.user.nombre }} {{ publication.user.apellido }}</p>
         <img src="/assets/icons/user-avatar.svg" alt="user">
       </div>
       <div class="header-right">
@@ -17,15 +17,15 @@
     <div class="pub-info-body">
       <div class="info-item">
         <p class="info-title">¿Qué busca?</p>
-        <p class="info-answer">Martillo</p>
+        <p class="info-answer">{{ publication.descripcion }}</p>
       </div>
       <div class="info-item">
         <p class="info-title">Antes de:</p>
-        <p class="info-answer">10/11/2021</p>
+        <p class="info-answer">{{ publication.fecha_limite }}</p>
       </div>
       <div class="info-item">
-        <p class="info-title">¿Dónde se encuentra?</p>
-        <p class="info-answer">Palermo, CABA</p>
+        <p class="info-title">¿Por cuánto tiempo?</p>
+        <p class="info-answer">{{ publication.cantidad_tiempo }}  {{ publication.unidad_tiempo }}</p>
       </div>
     </div>
   </div>
@@ -41,15 +41,29 @@
           <input type="text" placeholder="Ej: 500.00" mask="separator.2" thousandSeparator="," [formControl]="amountControl" />
         </div>
 
+        <span>Tiempo</span>
+        <div class="row">
+          <div class="input-container">
+            <input type="text" placeholder="Por cuánto tiempo?" mask="999" [formControl]="timeControl" />
+          </div>
+          <mat-form-field>
+            <mat-select [formControl]="timeUnitControl">
+              <mat-option value="días">días</mat-option>
+              <mat-option value="meses">meses</mat-option>
+              <mat-option value="año">año</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
         <span>Comentario extra</span>
         <div class="input-container">
           <input type="text" placeholder="Ej: Es viejo pero funciona :)" [formControl]="commentControl"/>
         </div>
 
-        <span>Tu celular</span>
+        <!-- <span>Tu celular</span>
         <div class="input-container">
           <input type="text" placeholder="Ej: (11) 2345-6789" mask="(00) 0000-0000" [formControl]="phoneControl" />
-        </div>
+        </div> -->
       </div>
 
       <div class="right">
@@ -75,7 +89,7 @@
   </div>
 
   <div class="sucessful-section" *ngIf="showSuccessfulMessage">
-    <p>Listo! En caso de que le interese a Juan Gomez,</p>
+    <p>Listo! En caso de que le interese a {{ publication.user.nombre }} {{ publication.user.apellido }},</p>
     <p>se va a contactar con vos 🚀</p>
   </div>
 

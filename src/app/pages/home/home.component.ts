@@ -7,6 +7,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SignUpComponent } from 'src/app/components/sign-up/sign-up.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +40,8 @@ export class HomeComponent implements OnInit {
   constructor(
       private dialog: MatDialog,
       public authService: AuthService,
-      private publicationService: PublicationService
+      private publicationService: PublicationService,
+      private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -160,5 +162,9 @@ export class HomeComponent implements OnInit {
         event.target.value = '';
       };
     }
+  }
+
+  goToMyNeeds() {
+    this.router.navigate(['my-needs']);
   }
 }

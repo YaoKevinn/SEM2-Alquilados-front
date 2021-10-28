@@ -4,6 +4,7 @@
   <div class="button-section">
     <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="loginBtnClicked()">Iniciar sesión</p>
     <p *ngIf="!authService.isUserLogged" class="nav-item" (click)="registerBtnClicked()">Registrarse</p>
+    <p *ngIf="authService.isUserLogged">Hola {{ authService.loggedUser.value.nombre }}</p>
     <!-- <p *ngIf="authService.isUserLogged" class="nav-item" (click)="signOutBtnClicked()">Cerrar sesión</p> -->
     <img *ngIf="authService.isUserLogged" src="/assets/icons/menu.svg" (click)="toggleMenu()" alt="icon" />
     <div *ngIf="menuOpened" class="menu-options">

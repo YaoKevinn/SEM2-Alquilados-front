@@ -2,7 +2,7 @@
 
   <div class="qualification-info-header">
     <div class="header-left">
-      <p class="header-name">Juan Gomez</p>
+      <p class="header-name">{{ user.nombre }} {{ user.apellido }}</p>
       <img src="/assets/icons/user-avatar.svg" alt="user">
     </div>
     <div class="header-right">
@@ -10,17 +10,19 @@
     </div>
   </div>
 
-  <div class="qualification-body">
-    <div class="qualification" *ngFor="let user of ['', '', '', '', '']">
+  <div class="qualification-body" *ngIf="user.calificaciones">
+    <div class="qualification" *ngFor="let qualityUser of user.calificaciones">
       <div class="row">
-        <p class="name">Maria Sanchez</p>
-        <img src="/assets/icons/user-avatar.svg" alt="user">
+        <!-- <p class="name">{{ qualityUser.nombre }} {{ qualityUser.apellido }}</p> -->
+        <!-- <img src="/assets/icons/user-avatar.svg" alt="user"> -->
       </div>
-      <p class="score"><span class="bold">Calificación:</span> ⭐️⭐️⭐️⭐</p>
-      <p class="review"><span class="bold">Reseñas:</span> Me devolvió todo en tiempo y forma</p>
+      <p class="score"><span class="bold">Calificación:</span> {{ '⭐️'.repeat(qualityUser.calificacion) }}</p>
+      <p class="review"><span class="bold">Reseñas:</span> {{ qualityUser.comentarios }}</p>
       <div class="separator"></div>
     </div>
   </div>
+
+  <p *ngIf="!user.calificaciones || user.calificaciones?.length === 0">Aún no tiene calificación</p>
 
   <div class="close-btn" (click)="closeBtnClicked()">
     <p>Cerrar</p>
