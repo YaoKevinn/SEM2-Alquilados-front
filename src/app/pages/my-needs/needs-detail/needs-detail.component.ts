@@ -37,10 +37,27 @@ export class NeedsDetailComponent implements OnInit {
     this.router.navigate(['/my-needs']);
   }
 
-  confirmOffer() {
+  confirmOffer(offer: any) {
     this.dialog.open(ConfirmOfferDialogComponent, {
       panelClass: 'user-modal-container',
       backdropClass: 'modal-backdrop',
+      data: {
+        publication: this.publication,
+        offer,
+      }
+    });
+  }
+
+  rejectOffer(offer: any) {
+    this.publicationService.rejectOffer(
+      this.publication.id,
+      offer.descripcion,
+      offer.cantidad_tiempo,
+      offer.unidad_tiempo,
+      offer.precio,
+      offer.foto,
+    ).subscribe(res => {
+      this.offers = this.offers.filter(x => x.id !== offer.id);
     });
   }
 }

@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { PublicationService } from './publication.service';
 import { User } from './../models/User';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
@@ -25,7 +27,7 @@ export class AuthService {
   // }
   // private _isUserLogged: boolean = true;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private publicationService: PublicationService, private router: Router) {}
 
   get loggedUser() {
     return this._loggedUser;
@@ -65,6 +67,19 @@ export class AuthService {
       localStorage.setItem('alquila2UserToken', user.token);
     });
     return obs;
+  }
+
+  logout() {
+    this._loggedUser.next(undefined);
+    this._isUserLogged = false;
+    this.publicationService.myNeedsPublications.next([]);
+    this.publicationService.myNeedsPublicationsPageInfo.next({
+      totalItems: 0,
+      totalPages: 0,
+      currentPage: 0,
+    });
+    localStorage.removeItem('alquila2UserToken');
+    this.router.navigate(['home']);
   }
 
   getFullUserInfo(userId: number) {

@@ -23,7 +23,9 @@ export class PublicationCardComponent implements OnInit {
   }
 
   goToDetail() {
-    this.router.navigate(['/detail']);
+    this.router.navigate(['/detail'], { queryParams: {
+      id: this.pubData.id
+    } });
   }
 
 }

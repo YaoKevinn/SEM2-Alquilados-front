@@ -1,9 +1,11 @@
+import { PublicationService } from './../../services/publication.service';
 import { QualificationDialogComponent } from './../../components/qualification-dialog/qualification-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileDialogComponent } from 'src/app/profile-dialog/profile-dialog.component';
+import { Publication } from 'src/app/models/Publication';
 
 @Component({
   selector: 'app-detail',
@@ -13,9 +15,13 @@ import { ProfileDialogComponent } from 'src/app/profile-dialog/profile-dialog.co
 export class DetailComponent implements OnInit {
   @ViewChild('fileUploadInput') fileUploadInput: any;
 
+  publication: any;
+
   amountControl: FormControl = new FormControl('', [Validators.required]);
+  timeControl: FormControl = new FormControl('', [Validators.required]);
+  timeUnitControl: FormControl = new FormControl('días', [Validators.required]);
   commentControl: FormControl = new FormControl('', [Validators.required]);
-  phoneControl: FormControl = new FormControl('', [Validators.required]);
+  // phoneControl: FormControl = new FormControl('', [Validators.required]);
 
   fileBase64: string = '';
   imageShown: any;
@@ -23,10 +29,15 @@ export class DetailComponent implements OnInit {
 
   showSuccessfulMessage = false;
 
-  constructor(private router: Router, private dialog: MatDialog) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private dialog: MatDialog, private publicationService: PublicationService) { }
 
   ngOnInit(): void {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.publicationService.getPublicationById(params.id).subscribe((data) => {
+        this.publication = data;
+      });
+    });
   }
 
   backBtnClicked() {
@@ -35,21 +46,25 @@ export class DetailComponent implements OnInit {
   }
 
   profileDialogBtnClicked() {
-    this.dialog.open(ProfileDialogComponent, {
-      panelClass: 'user-modal-container',
-      backdropClass: 'modal-backdrop',
-    })
+    if (this.publication?.user) {
+      this.dialog.open(ProfileDialogComponent, {
+        panelClass: 'user-modal-container',
+        backdropClass: 'modal-backdrop',
+        data: {
+          user: this.publication.user
+        }
+      })
+    }
   }
 
   checkIfSendBtnClickeable() {
-    if (
+    return (
       this.amountControl.valid &&
       this.commentControl.valid &&
-      this.phoneControl.valid
-    ) {
-      return true;
-    }
-    return false;
+      // this.phoneControl.valid &&
+      this.timeControl.valid &&
+      this.imageShown
+    );
   }
 
   openUploadImageWindow() {
@@ -76,13 +91,25 @@ export class DetailComponent implements OnInit {
   }
 
   sendProposal() {
-    this.showSuccessfulMessage = true;
+    this.publicationService.createOffer(
+      this.publication.id,
+      this.commentControl.value,
+      +this.timeControl.value,
+      this.timeUnitControl.value,
+      +this.amountControl.value,
+      this.imageShown
+    ).subscribe((res) => {
+      this.showSuccessfulMessage = true;
+    });
   }
 
   openQualificationDialog() {
     this.dialog.open(QualificationDialogComponent, {
       panelClass: 'user-modal-container',
       backdropClass: 'modal-backdrop',
+      data: {
+        user: this.publication.user
+      }
     })
   }
 }

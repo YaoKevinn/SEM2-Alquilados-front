@@ -312,4 +312,97 @@ export class ApiService {
       )
       .pipe(share());
   }
+
+  createOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+    const headers = new HttpHeaders()
+    .append('Content-Type', 'application/json')
+    .append('Authorization', 'Bearer ' + this.token);
+    return this.http
+      .post<any>(
+        this.baseApiUrl + `ofertas/store/${publicationId}`,
+        {
+          descripcion,
+          cantidad_tiempo,
+          unidad_tiempo,
+          precio,
+          foto,
+        },
+        {
+          headers,
+        }
+      )
+      .pipe(share());
+  }
+
+  acceptOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
+      return this.http
+        .post<any>(
+          this.baseApiUrl + `ofertas/elegir_oferta/${publicationId}`,
+          {
+            descripcion,
+            categoria_id: 0,
+            cantidad_tiempo,
+            unidad_tiempo,
+            precio,
+            foto,
+          },
+          {
+            headers,
+          }
+        )
+        .pipe(share());
+  }
+
+  rejectOffer(publicationId: number, descripcion: string, cantidad_tiempo: number, unidad_tiempo: string, precio: number, foto: string) {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
+      return this.http
+        .post<any>(
+          this.baseApiUrl + `ofertas/rechazar_oferta/${publicationId}`,
+          {
+            descripcion,
+            categoria_id: 0,
+            cantidad_tiempo,
+            unidad_tiempo,
+            precio,
+            foto,
+          },
+          {
+            headers,
+          }
+        )
+        .pipe(share());
+  }
+
+  getOfferById(offerId: number) {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
+    return this.http
+      .get<any>(
+        this.baseApiUrl +
+          `ofertas/${offerId}`,
+        { headers }
+      )
+      .pipe(share());
+  }
+
+  reactivatePublication(publicationId: number) {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
+      return this.http
+        .post<any>(
+          this.baseApiUrl + `publicaciones/reactivar/${publicationId}`,
+          {},
+          {
+            headers,
+          }
+        )
+        .pipe(share());
+  }
 }

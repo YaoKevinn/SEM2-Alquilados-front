@@ -42,6 +42,6 @@ export class MyNeedsComponent implements OnInit {
 
   filterNeeds() {
     this.allNeeds =  this.publicationService.myNeedsPublications.value.filter(nee => nee.finalizado === !this.showCompleted)
-}
+  }
 
 }

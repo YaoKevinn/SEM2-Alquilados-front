@@ -35,6 +35,7 @@ export class NavbarComponent implements OnInit {
   signOutBtnClicked() {
     this.menuOpened = false;
     this.authService.isUserLogged = false;
+    this.authService.logout();
   }
 
   toggleMenu() {

@@ -140,6 +140,20 @@
         display: flex;
         flex-direction: column;
 
+        .row {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          mat-form-field {
+            margin-bottom: 15px;
+            width: 100px;
+            position: relative;
+            top: 10px;
+          }
+        }
+
         span {
           font-style: normal;
           font-weight: normal;
@@ -149,6 +163,7 @@
         }
 
         .input-container {
+          flex: 1;
           display: flex;
           align-content: center;
           justify-content: center;
@@ -283,4 +298,23 @@
       color: #417846;
     }
   }
+}
+
+
+::ng-deep .mat-form-field-infix {
+  border: none;
+  padding-top: 0px !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: #2068CD!important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #2068CD !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1em;
 }

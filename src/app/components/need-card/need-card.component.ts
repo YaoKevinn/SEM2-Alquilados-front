@@ -12,6 +12,8 @@ export class NeedCardComponent implements OnInit {
 
   @Input() neeData: any;
 
+  reactivated = false;
+
   constructor(private router: Router, private publicationService: PublicationService) { }
 
   ngOnInit(): void {
@@ -26,6 +28,12 @@ export class NeedCardComponent implements OnInit {
     publication.activa = false;
     this.publicationService.editPublication(publication).subscribe((data) => {
       this.neeData.activa = false;
+    });
+  }
+
+  reactivateNeed(neeId: number) {
+    this.publicationService.reactivatePublication(neeId).subscribe(res => {
+      this.reactivated = true;
     });
   }
 }
