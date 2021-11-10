@@ -32,6 +32,9 @@ import { OfferCardComponent } from './pages/offers/offer-card/offer-card.compone
 import { OfferContactComponent } from './pages/offers/offer-contact/offer-contact.component';
 import { OfferSuccessDialogComponent } from './pages/offers/offer-success-dialog/offer-success-dialog.component';
 import { AddFriendDialogComponent } from './components/add-friend-dialog/add-friend-dialog.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductCardComponent } from './pages/products/product-card/product-card.component';
+import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -61,7 +64,10 @@ const maskConfig: Partial<IConfig> = {
     OfferCardComponent,
     OfferContactComponent,
     OfferSuccessDialogComponent,
-    AddFriendDialogComponent
+    AddFriendDialogComponent,
+    ProductsComponent,
+    ProductCardComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

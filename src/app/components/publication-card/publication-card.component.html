@@ -7,10 +7,9 @@
   </div>
 
   <div class="divider"></div>
-
   <div class="product-info">
 
-    <p class="title">Qué busca?</p>
+    <p class="title">Qué {{ isProduct ? 'ofrece' : 'busca' }}?</p>
     <p class="answer">{{ pubData.descripcion }}</p>
 
     <p class="title">Antes de:</p>
@@ -20,7 +19,7 @@
 
   <div class="buttons-section">
     <!-- <div class="btn" (click)="removeCard()"><p>No lo tengo</p></div> -->
-    <div class="btn yes" (click)="goToDetail()"><p>Lo tengo!</p></div>
+    <div class="btn yes" (click)="goToDetail()"><p>Lo {{ isProduct ? 'quiero' : 'tengo' }}!</p></div>
   </div>
 
 </div>

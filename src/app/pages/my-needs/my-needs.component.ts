@@ -17,7 +17,7 @@ export class MyNeedsComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     public authService: AuthService,
-    private publicationService: PublicationService,
+    public publicationService: PublicationService,
     private needService: NeedService
 ) { }
 
@@ -42,6 +42,14 @@ export class MyNeedsComponent implements OnInit {
 
   filterNeeds() {
     this.allNeeds =  this.publicationService.myNeedsPublications.value.filter(nee => nee.finalizado === !this.showCompleted)
+  }
+
+  getPreviousPage() {
+    this.publicationService.getMyPublications(this.publicationService.publicationsPageInfo.value.currentPage - 1, 6, true, !this.showCompleted);
+  }
+
+  getNextPage() {
+    this.publicationService.getMyPublications(this.publicationService.publicationsPageInfo.value.currentPage + 1, 6, true, !this.showCompleted);
   }
 
 }

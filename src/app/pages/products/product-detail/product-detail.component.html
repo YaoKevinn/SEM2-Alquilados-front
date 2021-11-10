@@ -1,0 +1,45 @@
+<div class="needs-detail-container">
+
+  <p class="back-btn" (click)="backBtnClicked()">< Volver</p>
+
+  <h2 class="detail-title">Detalle de búsqueda</h2>
+
+  <div class="needs-detail-section" *ngIf="publication">
+
+      <p class="search-text">
+        <span class="bold">Estas ofreciendo: </span>
+        {{ publication.descripcion }}
+      </p>
+      <p class="search-text">
+        {{
+          publication.fecha_limite === '3000-12-31'
+            ? ''
+            : ('Para antes de ' + publication.fecha_limite)
+        }}
+        por {{ publication.cantidad_tiempo }} {{ publication.unidad_tiempo }}</p>
+      <div class="divider"></div>
+      <p class="offer-text"><span class="blue">{{ offers.length }}</span> ofertas recibidas</p>
+
+      <div class="offer" *ngFor="let offer of offers">
+        <p class="name bold">{{ offer.user.nombre }} {{ offer.user.apellido }}</p>
+
+        <p class="amount"><span class="bold">Monto Pretendido:</span> ${{ offer.precio }}</p>
+        <p class="extra"><span class="bold">Comentario extra:</span> {{ offer.descripcion }}</p>
+        <div class="image-container">
+          <img *ngIf="offer.foto && offer.foto.startsWith('data:')" class="product" [src]="offer.foto" alt="product" />
+          <img *ngIf="!(offer.foto && offer.foto.startsWith('data:'))" src="/assets/images/logo.svg" alt="product" />
+        </div>
+        <div class="buttons-section">
+          <div class="btn" (click)="rejectOffer(offer)"><p>Rechazar</p></div>
+          <div class="btn blue" (click)="confirmOffer(offer)"><p>Aceptar</p></div>
+        </div>
+        <div class="gray-divider"></div>
+      </div>
+
+      <div class="no-offer-container" *ngIf="offers.length === 0">
+        <p class="no-offer-text">Aún no tenés ninguna oferta para esta necesidad</p>
+      </div>
+
+  </div>
+
+</div>

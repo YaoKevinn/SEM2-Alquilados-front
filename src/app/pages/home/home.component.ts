@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
 
   heroTitle: string = '';
   secondaryHeroTitle: string = '';
+  listTitle: string = '';
   isRenting: boolean = true;
+  isProduct: boolean = false;
   showSuccessfulForm = false;
 
   descriptionControl: FormControl = new FormControl('', [Validators.required]);
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit {
   constructor(
       private dialog: MatDialog,
       public authService: AuthService,
-      private publicationService: PublicationService,
+      public publicationService: PublicationService,
       private router: Router,
   ) { }
 
@@ -49,6 +51,8 @@ export class HomeComponent implements OnInit {
       this.allPublications = data;
     });
     this.setHeroTitle();
+    this.setListTitle();
+    this.publicationService.getAllPublications(1, 6, true);
   }
 
   setHeroTitle() {
@@ -58,6 +62,14 @@ export class HomeComponent implements OnInit {
     } else {
       this.heroTitle = 'Si tenés algo en casa que no lo usás frecuente... ';
       this.secondaryHeroTitle = 'ponelo en alquiler :)'
+    }
+  }
+
+  setListTitle() {
+    if (this.isProduct) {
+      this.listTitle = 'Cerca tuyo están alquilando cosas...';
+    } else {
+      this.listTitle = 'Cerca tuyo están necesitando cosas...';
     }
   }
 
@@ -141,6 +153,13 @@ export class HomeComponent implements OnInit {
     this.setHeroTitle();
   }
 
+  toggleListType(type: string) {
+    this.isProduct = type === 'product';
+    this.setListTitle();
+    this.publicationService.getAllPublications(1, 6, !this.isProduct);
+  }
+
+
   openUploadImageWindow() {
     this.homeFileUploadInput.nativeElement.click();
   }
@@ -166,5 +185,13 @@ export class HomeComponent implements OnInit {
 
   goToMyNeeds() {
     this.router.navigate(['my-needs']);
+  }
+
+  getPreviousPage() {
+    this.publicationService.getAllPublications(this.publicationService.publicationsPageInfo.value.currentPage - 1, 6, !this.isProduct);
+  }
+
+  getNextPage() {
+    this.publicationService.getAllPublications(this.publicationService.publicationsPageInfo.value.currentPage + 1, 6, !this.isProduct);
   }
 }

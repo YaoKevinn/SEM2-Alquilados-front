@@ -31,7 +31,8 @@ export class ConfirmOfferDialogComponent implements OnInit {
     ).subscribe((res) => {
       this.router.navigate(['my-needs-contact'], {
         queryParams: {
-          id: this.data.offer.id
+          id: this.data.offer.id,
+          isProduct: true,
         }
       });
       this.dialogRef.close();

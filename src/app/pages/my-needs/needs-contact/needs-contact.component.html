@@ -6,7 +6,7 @@
 
   <div class="needs-detail-section" *ngIf="publication && offer">
 
-      <p class="search-text">Estás buscando: <span class="bold">{{ publication.descripcion }}</span></p>
+      <p class="search-text">Estás {{ isProduct ? 'ofreciendo' : 'buscando' }}: <span class="bold">{{ publication.descripcion }}</span></p>
       <div class="divider"></div>
 
       <p class="contact-method">Detalle de oferta</p>

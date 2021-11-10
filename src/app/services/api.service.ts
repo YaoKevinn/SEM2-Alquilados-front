@@ -286,6 +286,22 @@ export class ApiService {
       .pipe(share());
   }
 
+  getMyOffers(
+    page: number,
+    size: number
+  ) {
+    const headers = new HttpHeaders()
+    .append('Content-Type', 'application/json')
+    .append('Authorization', 'Bearer ' + this.token);
+      return this.http
+        .get<PublicationPageInfo>(
+          this.baseApiUrl +
+            `publicaciones/mis_publicaciones?page=${page}&size=${size}`,
+          { headers }
+        )
+        .pipe(share());
+  }
+
   editPublication(publication: any) {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')

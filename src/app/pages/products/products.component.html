@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="publications-section">
+      <div class="row">
+        <h2 class="publication-section-title">
+          Mis productos
+        </h2>
+         <div class="choiceContainer">
+          <div class="choice">
+          <div class="circle" [class.showCompleted]="isActive"></div>
+          <div class="pill" [ngClass]="{ active: isActive }" (click)="toggleFilter()">
+            <p [class.active]="isActive">Activos</p>
+          </div>
+          <div class="pill" [ngClass]="{ active: !isActive }" (click)="toggleFilter()">
+            <p [class.active]="!isActive">Finalizados</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="publications" [class.noPublications]="allProducts.length === 0">
+        <app-product-card
+            *ngFor="let product of allProducts"
+            [productData]="product"
+        ></app-product-card>
+        <p *ngIf="allProducts.length === 0">
+          {{ !isActive ? 'Aún no tenés producto finalizado.' : 'No tenés producto publicado.' }}
+        </p>
+      </div>
+      <div class="paginator">
+        <p
+          class="blue btn"
+          [class.disabled]="publicationService.myProductsPublicationsPageInfo.value.currentPage === 1"
+          (click)="getPreviousPage()"
+        >
+          < Anterior
+        </p>
+        <p>
+          <span class="blue">{{ publicationService.myProductsPublicationsPageInfo.value.currentPage }}</span> <span class="gray secondary-page">
+            de
+            {{ publicationService.myProductsPublicationsPageInfo.value.totalPages }}
+          </span>
+        </p>
+        <p
+          class="blue btn"
+          [class.disabled]="publicationService.myProductsPublicationsPageInfo.value.currentPage === publicationService.myProductsPublicationsPageInfo.value.totalPages"
+          (click)="getNextPage()"
+        >
+          Siguiente >
+        </p>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+
+<div class="card-container">
+
+  <div class="card-header">
+    <p>{{ productData.user.nombre }} {{ productData.user.apellido }}</p>
+    <img src="/assets/icons/user-avatar.svg" alt="user">
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="product-info">
+
+    <p class="title">Descripción:</p>
+    <p class="answer">{{ productData.descripcion }}</p>
+
+    <p class="title">Publicado en:</p>
+    <p class="answer">{{ productData.createdAt | date: 'd/M/yyyy' }}</p>
+
+    <p class="title">Precio:</p>
+    <p class="answer">AR$ {{ productData.precio | number: '0.2-2' }}</p>
+
+    <img class="photo" [src]="productData.foto" alt="foto" />
+
+  </div>
+
+  <div class="buttons-section">
+    <div *ngIf="productData.activa" class="btn success" (click)="removeProduct()"><p>Pausar</p></div>
+    <div *ngIf="productData.activa" class="btn completed" (click)="goToDetail()"><p>Detalle</p></div>
+    <div *ngIf="!productData.activa" class="small"><p>Pausada!</p></div>
+    <div *ngIf="!productData.activa" class="btn completed" [class.yes]="reactivated" (click)="reactivateProduct(productData.id)"><p>{{ reactivated ? 'Reactivada' : 'Activar' }}</p></div>
+  </div>
+
+</div>

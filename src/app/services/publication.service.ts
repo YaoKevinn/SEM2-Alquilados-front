@@ -21,9 +21,14 @@ export class PublicationService {
     totalPages: 0,
     currentPage: 0,
   });
+  private _myProductsPublications$ = new BehaviorSubject<any[]>([]);
+  private _myProductsPublicationsPageInfo$ = new BehaviorSubject<any>({
+    totalItems: 0,
+    totalPages: 0,
+    currentPage: 0,
+  });
 
   constructor(private apiService: ApiService) {
-    this.getAllPublications(1, 6, true);
     // this._allPublications$.next([
     //     {
     //       id: 1,
@@ -86,6 +91,15 @@ export class PublicationService {
     return this._myNeedsPublicationsPageInfo$;
   }
 
+  get myProductsPublications() {
+    return this._myProductsPublications$;
+  }
+
+  get myProductsPublicationsPageInfo() {
+    return this._myProductsPublicationsPageInfo$;
+  }
+
+
   getAllPublications(page: number, size: number, es_necesidad: boolean) {
     const obs = this.apiService.getAllPublications(page, size, es_necesidad);
     obs.subscribe((data: PublicationPageInfo) => {
@@ -129,12 +143,21 @@ export class PublicationService {
   getMyPublications(page: number, size: number, es_necesidad: boolean, activa: boolean) {
     const obs = this.apiService.getMyPublications(page, size, es_necesidad, activa);
     obs.subscribe((data) => {
-      this._myNeedsPublications$.next(data.registros);
-      this._myNeedsPublicationsPageInfo$.next({
-        totalItems: data.totalItems,
-        totalPages: data.totalPages,
-        currentPage: data.currentPage,
-      })
+      if (es_necesidad) {
+        this._myNeedsPublications$.next(data.registros);
+        this._myNeedsPublicationsPageInfo$.next({
+          totalItems: data.totalItems,
+          totalPages: data.totalPages,
+          currentPage: data.currentPage,
+        })
+      } else {
+        this._myProductsPublications$.next(data.registros);
+        this._myProductsPublicationsPageInfo$.next({
+          totalItems: data.totalItems,
+          totalPages: data.totalPages,
+          currentPage: data.currentPage,
+        })
+      }
     });
     return obs;
   }

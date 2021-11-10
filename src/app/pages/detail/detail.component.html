@@ -16,12 +16,12 @@
     <div class="divider"></div>
     <div class="pub-info-body">
       <div class="info-item">
-        <p class="info-title">¿Qué busca?</p>
+        <p class="info-title">¿Qué {{ isProduct ? 'ofrece' : 'busca' }}?</p>
         <p class="info-answer">{{ publication.descripcion }}</p>
       </div>
       <div class="info-item">
-        <p class="info-title">Antes de:</p>
-        <p class="info-answer">{{ publication.fecha_limite === '3000-12-31' ? '-' : publication.fecha_limite }}</p>
+        <p class="info-title">{{ isProduct ? 'Precio: ' : 'Antes de:' }}</p>
+        <p class="info-answer">{{ isProduct ? 'AR$ ' + publication.precio : publication.fecha_limite === '3000-12-31' ? '-' : publication.fecha_limite  }}</p>
       </div>
       <div class="info-item">
         <p class="info-title">¿Por cuánto tiempo?</p>
@@ -30,19 +30,19 @@
     </div>
   </div>
 
-  <p class="detail-container-text">Lo tenés? <span class="blue">Ofrecelo</span></p>
+  <p class="detail-container-text">Lo {{ isProduct ? 'querés' : 'tenés' }}? <span class="blue">{{ isProduct ? 'Alquilalo' : 'Ofrecelo' }}</span></p>
 
-  <div class="offer-card" *ngIf="!showSuccessfulMessage">
+  <div class="offer-card" *ngIf="!showSuccessfulMessage && isProduct !== undefined">
     <div class="offer-form">
 
       <div class="left">
-        <span>Monto pretendido (AR$)</span>
-        <div class="input-container">
+        <span *ngIf="!isProduct">Monto pretendido (AR$)</span>
+        <div *ngIf="!isProduct" class="input-container">
           <input type="text" placeholder="Ej: 500.00" mask="separator.2" thousandSeparator="," [formControl]="amountControl" />
         </div>
 
-        <span>Tiempo</span>
-        <div class="row">
+        <span *ngIf="!isProduct">Tiempo</span>
+        <div class="row" *ngIf="!isProduct">
           <div class="input-container">
             <input type="text" placeholder="Por cuánto tiempo?" mask="999" [formControl]="timeControl" />
           </div>
@@ -66,7 +66,7 @@
         </div> -->
       </div>
 
-      <div class="right">
+      <div class="right" *ngIf="!isProduct">
         <span>Cargar imagen</span>
         <div class="upload-image-section" (click)="openUploadImageWindow()">
           <p class="upload-image-text" *ngIf="!changedImage">Hacé click para agregar una foto</p>
@@ -81,15 +81,21 @@
           />
         </div>
       </div>
+      <div class="right" *ngIf="isProduct">
+        <div class="upload-image-section">
+          <img [src]="publication.foto" alt="image">
+        </div>
+      </div>
 
     </div>
-    <div class="send-offer-btn" [class.clickeable]="checkIfSendBtnClickeable()" (click)="sendProposal()">
-      <p>Enviar propuesta</p>
+    <div class="send-offer-btn" [class.clickeable]="checkIfSendBtnClickeable()" (click)="isProduct ? confirmProposal() : sendProposal()">
+      <p>{{ isProduct ? 'Confirmar' : 'Enviar propuesta' }}</p>
     </div>
   </div>
 
   <div class="sucessful-section" *ngIf="showSuccessfulMessage">
-    <p>Listo! En caso de que le interese a {{ publication.user.nombre }} {{ publication.user.apellido }},</p>
+    <p *ngIf="!isProduct">Listo! En caso de que le interese a {{ publication.user.nombre }} {{ publication.user.apellido }},</p>
+    <p *ngIf="isProduct">Listo! En caso de que {{ publication.user.nombre }} {{ publication.user.apellido }} acepte la oferta,</p>
     <p>se va a contactar con vos 🚀</p>
   </div>
 
