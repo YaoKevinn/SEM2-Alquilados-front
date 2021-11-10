@@ -16,6 +16,7 @@ export class DetailComponent implements OnInit {
   @ViewChild('fileUploadInput') fileUploadInput: any;
 
   publication: any;
+  isProduct: boolean;
 
   amountControl: FormControl = new FormControl('', [Validators.required]);
   timeControl: FormControl = new FormControl('', [Validators.required]);
@@ -37,6 +38,7 @@ export class DetailComponent implements OnInit {
       this.publicationService.getPublicationById(params.id).subscribe((data) => {
         this.publication = data;
       });
+      this.isProduct = params.isProduct === 'true';
     });
   }
 
@@ -58,13 +60,17 @@ export class DetailComponent implements OnInit {
   }
 
   checkIfSendBtnClickeable() {
-    return (
-      this.amountControl.valid &&
-      this.commentControl.valid &&
-      // this.phoneControl.valid &&
-      this.timeControl.valid &&
-      this.imageShown
-    );
+    if (this.isProduct) {
+      return this.commentControl.valid;
+    } else {
+      return (
+        this.amountControl.valid &&
+        this.commentControl.valid &&
+        // this.phoneControl.valid &&
+        this.timeControl.valid &&
+        this.imageShown
+      );
+    }
   }
 
   openUploadImageWindow() {
@@ -98,6 +104,19 @@ export class DetailComponent implements OnInit {
       this.timeUnitControl.value,
       +this.amountControl.value,
       this.imageShown
+    ).subscribe((res) => {
+      this.showSuccessfulMessage = true;
+    });
+  }
+
+  confirmProposal() {
+    this.publicationService.createOffer(
+      this.publication.id,
+      this.commentControl.value,
+      this.publication.cantidad_tiempo,
+      this.publication.unidad_tiempo,
+      this.publication.precio,
+      this.publication.foto
     ).subscribe((res) => {
       this.showSuccessfulMessage = true;
     });

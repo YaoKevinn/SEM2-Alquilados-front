@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class PublicationCardComponent implements OnInit {
 
   @Input() pubData: any;
+  @Input() isProduct: any;
 
   constructor(private router: Router, private publicationService: PublicationService) { }
 
@@ -24,7 +25,8 @@ export class PublicationCardComponent implements OnInit {
 
   goToDetail() {
     this.router.navigate(['/detail'], { queryParams: {
-      id: this.pubData.id
+      id: this.pubData.id,
+      isProduct: this.isProduct
     } });
   }
 

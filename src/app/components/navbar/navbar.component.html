@@ -9,11 +9,15 @@
     <img *ngIf="authService.isUserLogged" src="/assets/icons/menu.svg" (click)="toggleMenu()" alt="icon" />
     <div *ngIf="menuOpened" class="menu-options">
       <div class="option" (click)="routeToPage('my-needs')">
-        <p>Mis necesidades</p>
+        <p>Mis pedidos</p>
       </div>
       <div class="divider"></div>
       <div class="option" (click)="routeToPage('offers')">
         <p>Mis ofertas</p>
+      </div>
+      <div class="divider"></div>
+      <div class="option" (click)="routeToPage('products')">
+        <p>Mis productos</p>
       </div>
       <div class="divider"></div>
       <div class="option" (click)="routeToPage('profile')">

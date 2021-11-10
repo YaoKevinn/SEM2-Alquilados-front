@@ -2,7 +2,7 @@
     <div class="publications-section">
         <div class="row">
           <h2 class="publication-section-title">
-            Mis necesidades
+            Mis pedidos
           </h2>
            <div class="choiceContainer">
             <div class="choice">
@@ -23,6 +23,28 @@
           ></app-need-card>
           <p *ngIf="allNeeds.length === 0">
             {{ showCompleted ? 'Aún no tenés necesidad finalizada.' : 'No tenés necesidad activa.' }}
+          </p>
+        </div>
+        <div class="paginator">
+          <p
+            class="blue btn"
+            [class.disabled]="publicationService.myNeedsPublicationsPageInfo.value.currentPage === 1"
+            (click)="getPreviousPage()"
+          >
+            < Anterior
+          </p>
+          <p>
+            <span class="blue">{{ publicationService.myNeedsPublicationsPageInfo.value.currentPage }}</span> <span class="gray secondary-page">
+              de
+              {{ publicationService.myNeedsPublicationsPageInfo.value.totalPages }}
+            </span>
+          </p>
+          <p
+            class="blue btn"
+            [class.disabled]="publicationService.myNeedsPublicationsPageInfo.value.currentPage === publicationService.myNeedsPublicationsPageInfo.value.totalPages"
+            (click)="getNextPage()"
+          >
+            Siguiente >
           </p>
         </div>
     </div>

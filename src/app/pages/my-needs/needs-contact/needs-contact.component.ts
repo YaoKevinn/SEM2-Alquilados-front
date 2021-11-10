@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class NeedsContactComponent implements OnInit {
   publication: any;
   offer: any
+  isProduct: boolean;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private publicationService: PublicationService) { }
 
@@ -21,6 +22,7 @@ export class NeedsContactComponent implements OnInit {
           this.offer = res;
         })
       }
+      this.isProduct = params.isProduct === 'true'
     });
     // if (params.data) {
     //   console.log(params.data);
@@ -30,7 +32,11 @@ export class NeedsContactComponent implements OnInit {
   }
 
   backBtnClicked() {
-    this.router.navigate(['my-needs']);
+    if (this.isProduct) {
+      this.router.navigate(['products']);
+    } else {
+      this.router.navigate(['my-needs']);
+    }
   }
 
   goToWhatsapp(telefono: string) {

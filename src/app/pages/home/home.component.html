@@ -127,16 +127,44 @@
   </div>
 
   <div class="publications-section">
-    <h2 class="publication-section-title">
-      Cerca tuyo están necesitando cosas... <br>
-      <span class="bold">Lo tenés? </span>
-      <span class="blue">Ofreceselos!</span>
-    </h2>
+    <div class="row">
+      <h2 class="publication-section-title">
+        {{ listTitle }}<br>
+        <span class="bold">{{ isProduct ? 'Lo querés?' : 'Lo tenés?' }}</span>
+        <span class="blue">{{ isProduct ? ' Alquilalo!' : ' Ofreceselos!' }}</span>
+      </h2>
+      <div class="choice">
+        <div class="circle" [class.isRenting]="!isProduct"></div>
+        <div class="pill" [ngClass]="{ active: !isProduct }" (click)="toggleListType('need')">
+          <p [class.active]="isRenting">Pedidos</p>
+        </div>
+        <div class="pill" [ngClass]="{ active: isProduct }" (click)="toggleListType('product')">
+          <p [class.active]="isProduct">Productos</p>
+        </div>
+      </div>
+    </div>
     <div class="publications">
       <app-publication-card
         *ngFor="let publication of allPublications"
         [pubData]="publication"
+        [isProduct]="isProduct"
       ></app-publication-card>
+    </div>
+    <div class="paginator">
+      <p
+        class="blue btn"
+        [class.disabled]="publicationService.publicationsPageInfo.value.currentPage === 1"
+        (click)="getPreviousPage()"
+      >
+        < Anterior
+      </p>
+      <p>
+        <span class="blue">{{ publicationService.publicationsPageInfo.value.currentPage }}</span> <span class="gray secondary-page">
+          de
+          {{ publicationService.publicationsPageInfo.value.totalPages }}
+        </span>
+      </p>
+      <p class="blue btn" [class.disabled]="publicationService.publicationsPageInfo.value.currentPage === publicationService.publicationsPageInfo.value.totalPages">Siguiente ></p>
     </div>
   </div>
 
