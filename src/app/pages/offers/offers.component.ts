@@ -50,6 +50,7 @@ export class OffersComponent implements OnInit {
 
   getNextPage() {
     this.offerService.getMyOffers(this.authService.loggedUser.value.id, this.offerService.offersPageInfo.value.currentPage + 1, 6);
+    console.log('');
   }
 
 }
