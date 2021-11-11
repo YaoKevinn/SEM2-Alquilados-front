@@ -17,10 +17,26 @@
       </div> -->
       </div>
       <div class="publications">
-      <app-offer-card
-          *ngFor="let need of allOffers"
-          [neeData]="need"
-      ></app-offer-card>
+        <app-offer-card
+            *ngFor="let need of allOffers"
+            [neeData]="need"
+        ></app-offer-card>
+      </div>
+      <div class="paginator">
+        <p
+          class="blue btn"
+          [class.disabled]="offerService.offersPageInfo.value.currentPage === 1"
+          (click)="getPreviousPage()"
+        >
+          < Anterior
+        </p>
+        <p>
+          <span class="blue">{{ offerService.offersPageInfo.value.currentPage }}</span> <span class="gray secondary-page">
+            de
+            {{ offerService.offersPageInfo.value.totalPages }}
+          </span>
+        </p>
+        <p class="blue btn" [class.disabled]="offerService.offersPageInfo.value.currentPage === offerService.offersPageInfo.value.totalPages" (click)="getNextPage()">Siguiente ></p>
       </div>
   </div>
 </div>

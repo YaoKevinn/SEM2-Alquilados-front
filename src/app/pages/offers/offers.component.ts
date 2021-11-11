@@ -19,7 +19,7 @@ export class OffersComponent implements OnInit {
     private dialog: MatDialog,
     public authService: AuthService,
     private needService: NeedService,
-    private offerService: OfferService,
+    public offerService: OfferService,
 ) { }
 
   ngOnInit(): void {
@@ -42,5 +42,14 @@ export class OffersComponent implements OnInit {
 
   filterOffers() {
     this.allOffers =  this.offerService.allOffers.value.filter(o => o.finalizado === !this.showCompleted)
-}
+  }
+
+  getPreviousPage() {
+    this.offerService.getMyOffers(this.authService.loggedUser.value.id, this.offerService.offersPageInfo.value.currentPage - 1, 6);
+  }
+
+  getNextPage() {
+    this.offerService.getMyOffers(this.authService.loggedUser.value.id, this.offerService.offersPageInfo.value.currentPage + 1, 6);
+  }
+
 }
