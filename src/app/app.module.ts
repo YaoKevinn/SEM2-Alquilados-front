@@ -35,6 +35,7 @@ import { AddFriendDialogComponent } from './components/add-friend-dialog/add-fri
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductCardComponent } from './pages/products/product-card/product-card.component';
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -67,7 +68,8 @@ const maskConfig: Partial<IConfig> = {
     AddFriendDialogComponent,
     ProductsComponent,
     ProductCardComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

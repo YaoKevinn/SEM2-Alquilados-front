@@ -74,7 +74,22 @@ export class PerfilComponent implements OnInit {
 
   editUserInfo() {
     // PENDING
-    this.showSuccessfulMessage = true;
+    this.authService
+      .editUser(
+        this.authService.loggedUser.value.id,
+        this.nameControl.value,
+        this.firstNameControl.value,
+        this.mailControl.value,
+        this.birthdateControl.value,
+        this.phoneControl.value
+      )
+      .subscribe((res) => {
+        this.showSuccessfulMessage = true;
+        this.authService.loggedUser.next(res);
+        setTimeout(() => {
+          this.showSuccessfulMessage = false;
+        }, 2000);
+      });
   }
 
   openFriendList() {

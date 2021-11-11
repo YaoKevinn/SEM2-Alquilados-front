@@ -49,6 +49,21 @@
       line-height: 32px;
       color: #000000;
       margin-bottom: 14px;
+
+      &.red {
+        color: #D54D4D;
+      }
+      &.yellow {
+        color: #aaa;
+      }
+      &.green {
+        color: #21ce99;
+      }
+    }
+
+    .photo {
+      height: 150px;
+      object-fit: contain;
     }
   }
 

@@ -143,6 +143,10 @@
         </div>
       </div>
     </div>
+    <div class="input-container">
+      <input type="text" placeholder="Buscar publicaciones..." [formControl]="searchTextControl" (keyup.enter)="search()" />
+      <img src="/assets/icons/search.svg" alt="search" (click)="search()" />
+    </div>
     <div class="publications">
       <app-publication-card
         *ngFor="let publication of allPublications"
@@ -164,7 +168,7 @@
           {{ publicationService.publicationsPageInfo.value.totalPages }}
         </span>
       </p>
-      <p class="blue btn" [class.disabled]="publicationService.publicationsPageInfo.value.currentPage === publicationService.publicationsPageInfo.value.totalPages">Siguiente ></p>
+      <p class="blue btn" [class.disabled]="publicationService.publicationsPageInfo.value.currentPage === publicationService.publicationsPageInfo.value.totalPages" (click)="getNextPage()">Siguiente ></p>
     </div>
   </div>
 

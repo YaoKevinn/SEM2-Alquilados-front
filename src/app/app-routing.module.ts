@@ -1,3 +1,4 @@
+import { SearchComponent } from './pages/search/search.component';
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 import { OfferContactComponent } from './pages/offers/offer-contact/offer-contact.component';
 import { NeedsDetailComponent } from './pages/my-needs/needs-detail/needs-detail.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'offers-contact', component: OfferContactComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'products-detail', component: ProductDetailComponent },
+  { path: 'search', component: SearchComponent },
   { path: '**', redirectTo: 'home' }
 ];
 

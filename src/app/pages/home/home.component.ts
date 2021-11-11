@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit {
   onlyFriendsControl: FormControl = new FormControl(false, [Validators.required]);
   priceControl:FormControl = new FormControl('', [Validators.required]);
 
+  searchTextControl: FormControl = new FormControl('', [Validators.required]);
+
   fileBase64: string = '';
   imageShown: any;
   changedImage = false;
@@ -193,5 +195,13 @@ export class HomeComponent implements OnInit {
 
   getNextPage() {
     this.publicationService.getAllPublications(this.publicationService.publicationsPageInfo.value.currentPage + 1, 6, !this.isProduct);
+  }
+
+  search() {
+    if (this.searchTextControl.value !== '') {
+      this.publicationService.getAllPublications(1, 6, !this.isProduct, this.searchTextControl.value);
+    } else {
+      this.publicationService.getAllPublications(1, 6, !this.isProduct);
+    }
   }
 }

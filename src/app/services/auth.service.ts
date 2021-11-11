@@ -99,4 +99,16 @@ export class AuthService {
     const obs = this.apiService.deleteFriend(userId, telefono_friend);
     return obs;
   }
+
+  editUser(
+    id: number,
+    nombre: string,
+    apellido: string,
+    email: string,
+    fecha_nacimiento: string,
+    telefono: string
+  ) {
+    const obs = this.apiService.editUser(id, nombre, apellido, email, fecha_nacimiento, telefono);
+    return obs;
+  }
 }

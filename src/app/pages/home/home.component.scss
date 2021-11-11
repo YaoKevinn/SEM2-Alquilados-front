@@ -466,13 +466,42 @@
 
     }
 
+    .input-container {
+      align-self: center;
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      min-width: 1200px;
+      border: 1px solid #000;
+      border-radius: 20px;
+      overflow: hidden;
+
+      input {
+        flex: 1;
+        width: 100%;
+        padding: 15px 30px;
+        outline: none;
+        border: none;
+        font-size: 20px;
+      }
+
+      img {
+        margin-right: 20px;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+      }
+    }
+
     .publications {
       max-width: 1500px;
       width: 100%;
       display: flex;
       justify-content: center;
       gap: 30px;
-      margin: 60px auto 0 auto;
+      margin: 50px auto 0 auto;
       flex-wrap: wrap;
     }
 

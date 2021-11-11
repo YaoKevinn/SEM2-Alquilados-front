@@ -2,7 +2,7 @@
 <div class="card-container">
 
   <div class="card-header">
-    <p>{{ neeData.nombre }} {{ neeData.apellido }}</p>
+    <p>{{ authService.loggedUser.value.nombre }} {{ authService.loggedUser.value.apellido }}</p>
     <img src="/assets/icons/user-avatar.svg" alt="user">
   </div>
 
@@ -13,12 +13,20 @@
     <p class="title">Quien lo necesita? </p>
     <p class="answer">Maria Sanchez</p>
 
-    <p class="title">Que busca:</p>
-    <p class="answer">{{ neeData.descripcion }}</p>
+    <p class="title">Precio:</p>
+    <p class="answer">AR$ {{ neeData.precio | number: '0.2-2' }}</p>
 
     <p class="title">Estado:</p>
-    <p class="answer">Aceptado</p>
+    <p
+      class="answer"
+      [class.red]="getStatusText() === 'Rechazado'"
+      [class.yellow]="getStatusText() === 'Pendiente'"
+      [class.green]="getStatusText() === 'Aceptado'"
+    >
+      {{ getStatusText() }}
+    </p>
 
+    <img class="photo" [src]="neeData.foto" alt="foto" />
   </div>
 
   <div class="buttons-section">

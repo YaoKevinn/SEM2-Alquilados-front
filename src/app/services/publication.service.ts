@@ -100,8 +100,8 @@ export class PublicationService {
   }
 
 
-  getAllPublications(page: number, size: number, es_necesidad: boolean) {
-    const obs = this.apiService.getAllPublications(page, size, es_necesidad);
+  getAllPublications(page: number, size: number, es_necesidad: boolean, descripcion: string = undefined) {
+    const obs = this.apiService.getAllPublications(page, size, es_necesidad, descripcion);
     obs.subscribe((data: PublicationPageInfo) => {
       this._allPublications$.next(data.registros);
       this._publicationsPageInfo$.next({
