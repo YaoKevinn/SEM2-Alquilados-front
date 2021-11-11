@@ -29,9 +29,10 @@
                 <div class="input-container">
                   <input type="text" placeholder="Palermo" [formControl]="ubicationControl" />
                 </div> -->
-            <div class="edit-information-btn" [class.clickeable]="checkIfSendBtnClickeable()" (click)="editUserInfo()">
+            <div *ngIf="!showSuccessfulMessage" class="edit-information-btn" [class.clickeable]="checkIfSendBtnClickeable()" (click)="editUserInfo()">
               <p>Enviar Informacion</p>
             </div>
+            <img class="check" *ngIf="showSuccessfulMessage" src="/assets/icons/check.svg" alt="check" />
       </div>
       <div class="right">
         <img src="/assets/icons/user-avatar.svg" alt="user">

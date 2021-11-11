@@ -29,18 +29,18 @@ export class FriendListComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  deleteFriend(telefono: string) {
-    this.authService.deleteFriend(this.authService.loggedUser.value.id, telefono).subscribe((res) => {
-      this.data.friends = this.data.friends.filter(friend => friend.telefono !== telefono);
+  deleteFriend(user: any) {
+    this.authService.deleteFriend(user.id, user.telefono).subscribe((res) => {
+      this.data.friends = this.data.friends.filter(friend => friend.telefono !== user.telefono);
     });
   }
 
   addFriend() {
     this.dialog.open(AddFriendDialogComponent, {
       panelClass: 'user-modal-container',
-    }).afterClosed().subscribe((user) => {
-      if (user) {
-        this.data.friends.push(user);
+    }).afterClosed().subscribe((res) => {
+      if (res?.message?.email) {
+        this.data.friends.push(res.message);
       }
     })
   }

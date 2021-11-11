@@ -114,22 +114,19 @@ export class ApiService {
     nombre: string,
     apellido: string,
     email: string,
-    password: string,
     fecha_nacimiento: string,
     telefono: string
   ) {
-    const headers = new HttpHeaders().append(
-      'Content-Type',
-      'application/json'
-    );
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
     return this.http
-      .post<any>(
+      .put<any>(
         this.baseApiUrl + `users/${id}`,
         {
           nombre,
           apellido,
           email,
-          password,
           fecha_nacimiento,
           telefono,
         },
@@ -183,7 +180,8 @@ export class ApiService {
   getAllPublications(
     page: number = 1,
     size: number = 6,
-    es_necesidad: boolean = true
+    es_necesidad: boolean = true,
+    descripcion: string = undefined,
   ) {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
@@ -191,7 +189,7 @@ export class ApiService {
     return this.http
       .get<PublicationPageInfo>(
         this.baseApiUrl +
-          `publicaciones?page=${page}&size=${size}&es_necesidad=${es_necesidad}`,
+          `publicaciones?page=${page}&size=${size}&es_necesidad=${es_necesidad}` + (descripcion ? `&descripcion=${descripcion}` : ''),
         { headers }
       )
       .pipe(share());
@@ -287,6 +285,7 @@ export class ApiService {
   }
 
   getMyOffers(
+    userId: number,
     page: number,
     size: number
   ) {
@@ -294,9 +293,9 @@ export class ApiService {
     .append('Content-Type', 'application/json')
     .append('Authorization', 'Bearer ' + this.token);
       return this.http
-        .get<PublicationPageInfo>(
+        .get<any>(
           this.baseApiUrl +
-            `publicaciones/mis_publicaciones?page=${page}&size=${size}`,
+            `ofertas/mis_ofertas?page=${page}&size=${size}`,
           { headers }
         )
         .pipe(share());
