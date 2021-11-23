@@ -1,3 +1,4 @@
+import { ConfirmDialogComponent } from './../../components/confirm-dialog/confirm-dialog.component';
 import { FriendListComponent } from './../../components/friend-list/friend-list.component';
 import { PublicationService } from './../../services/publication.service';
 import { AuthService } from './../../services/auth.service';

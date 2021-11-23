@@ -19,7 +19,7 @@ export class OfferCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // console.log(this.neeData);
+    console.log(this.neeData);
   }
 
   // filterNeeds() {
@@ -29,18 +29,23 @@ export class OfferCardComponent implements OnInit {
   // }
 
   goToOfferContact() {
-    this.router.navigate(['/offers-contact']);
+    this.router.navigate(['/offers-contact'], {
+      queryParams: {
+        id: this.neeData.id,
+        isProduct: !this.neeData.publicacion.es_necesidad,
+      }
+    });
   }
 
   getStatusText() {
-    if (this.neeData.es_vieja) {
-      if (this.neeData.elegida) {
+    if (this.neeData.elegida) {
         return 'Aceptado';
-      } else {
-        return 'Rechazado';
-      }
     } else {
-      return 'Pendiente';
+      if (this.neeData.es_vieja) {
+        return 'Rechazado';
+      } else {
+        return 'Pendiente';
+      }
     }
   }
 }

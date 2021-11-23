@@ -1,6 +1,9 @@
+import { MatDialog } from '@angular/material/dialog';
 import { PublicationService } from './../../../services/publication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { OfferSuccessDialogComponent } from '../../offers/offer-success-dialog/offer-success-dialog.component';
+import { PublicationSuccessDialogComponent } from 'src/app/components/publication-success-dialog/publication-success-dialog.component';
 
 @Component({
   selector: 'app-needs-contact',
@@ -12,14 +15,17 @@ export class NeedsContactComponent implements OnInit {
   offer: any
   isProduct: boolean;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private publicationService: PublicationService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private publicationService: PublicationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params.id) {
         this.publicationService.getOfferById(params.id).subscribe((res) => {
-          this.publication = res.publicacion;
           this.offer = res;
+
+          this.publicationService.getPublicationById(res.publicacion_id).subscribe((publication) => {
+            this.publication = publication;
+          });
         })
       }
       this.isProduct = params.isProduct === 'true'
@@ -41,6 +47,18 @@ export class NeedsContactComponent implements OnInit {
 
   goToWhatsapp(telefono: string) {
     window.open(`https://wa.me/${telefono}`);
+  }
+
+  openSuccessDialog() {
+    this.dialog.open(PublicationSuccessDialogComponent, {
+      panelClass: 'user-modal-container',
+      backdropClass: 'modal-backdrop',
+      data: {
+        publication: this.publication,
+        offer: this.offer,
+        isProduct: this.isProduct,
+      }
+    });
   }
 
 }

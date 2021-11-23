@@ -1,20 +1,20 @@
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-offer-success-dialog',
-  templateUrl: './offer-success-dialog.component.html',
-  styleUrls: ['./offer-success-dialog.component.scss']
+  selector: 'app-publication-success-dialog',
+  templateUrl: './publication-success-dialog.component.html',
+  styleUrls: ['./publication-success-dialog.component.scss']
 })
-export class OfferSuccessDialogComponent implements OnInit {
+export class PublicationSuccessDialogComponent implements OnInit {
   qualityControl: FormControl = new FormControl(5, [Validators.required]);
   productQualityControl: FormControl = new FormControl(5, [Validators.required]);
   commentControl: FormControl = new FormControl('', [Validators.required]);
   productCommentControl: FormControl = new FormControl('', [Validators.required]);
 
-  constructor(private dialogRef: MatDialogRef<OfferSuccessDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService) { }
+  constructor(private dialogRef: MatDialogRef<PublicationSuccessDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService) { }
 
   ngOnInit(): void {
     console.log(this.data);
@@ -32,5 +32,6 @@ export class OfferSuccessDialogComponent implements OnInit {
       this.dialogRef.close(true);
     });
   }
+
 
 }

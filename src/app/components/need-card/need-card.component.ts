@@ -23,6 +23,15 @@ export class NeedCardComponent implements OnInit {
     this.router.navigate(['/my-needs-detail'], { queryParams: { id: this.neeData.id } });
   }
 
+  goToNeedsContact() {
+    this.router.navigate(['my-needs-contact'], {
+      queryParams: {
+        id: this.neeData.id,
+        isProduct: false,
+      }
+    });
+  }
+
   removeNeed() {
     const publication = {...this.neeData};
     publication.activa = false;

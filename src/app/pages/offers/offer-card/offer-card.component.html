@@ -1,38 +1,36 @@
-
 <div class="card-container">
 
-  <div class="card-header">
-    <p>{{ authService.loggedUser.value.nombre }} {{ authService.loggedUser.value.apellido }}</p>
-    <img src="/assets/icons/user-avatar.svg" alt="user">
-  </div>
+    <div class="card-header">
+        <p>{{ authService.loggedUser.value.nombre }} {{ authService.loggedUser.value.apellido }}</p>
+        <img src="/assets/icons/user-avatar.svg" alt="user">
+    </div>
 
-  <div class="divider"></div>
+    <div class="divider"></div>
 
-  <div class="product-info">
+    <div class="product-info">
 
-    <p class="title">¿Qué estás ofreciendo?</p>
-    <p class="answer">{{ neeData.publicacion.descripcion }}</p>
+        <p class="title">¿Qué estás {{ !this.neeData.publicacion.es_necesidad ? 'queriendo alquilar' : 'ofreciendo' }}?</p>
+        <p class="answer">{{ neeData.publicacion.descripcion }}</p>
 
-    <p class="title">Precio:</p>
-    <p class="answer">AR$ {{ neeData.precio | number: '0.2-2' }}</p>
+        <p class="title">Precio:</p>
+        <p class="answer">AR$ {{ neeData.precio | number: '0.2-2' }}</p>
 
-    <p class="title">Estado:</p>
-    <p
-      class="answer"
-      [class.red]="getStatusText() === 'Rechazado'"
-      [class.yellow]="getStatusText() === 'Pendiente'"
-      [class.green]="getStatusText() === 'Aceptado'"
-    >
-      {{ getStatusText() }}
-    </p>
+        <p class="title">Estado:</p>
+        <p class="answer" [class.red]="getStatusText() === 'Rechazado'" [class.yellow]="getStatusText() === 'Pendiente'"
+            [class.green]="getStatusText() === 'Aceptado'">
+            {{ getStatusText() }}
+        </p>
 
-    <img class="photo" [src]="neeData.foto" alt="foto" />
-  </div>
+        <img class="photo" [src]="neeData.foto" alt="foto" />
+    </div>
 
-  <div class="buttons-section">
-    <div *ngIf="neeData.finalizado === false" class="btn success"><p>Finalizar</p></div>
-    <div *ngIf="neeData.finalizado === false" class="btn completed" (click)="goToOfferContact()"><p>Detalle</p></div>
-    <div *ngIf="neeData.finalizado === true" class="btn yes"><p>Cancelar oferta</p></div>
-  </div>
+    <div class="buttons-section">
+        <div *ngIf="neeData.elegida" class="btn completed" (click)="goToOfferContact()">
+            <p>Detalle</p>
+        </div>
+        <div *ngIf="!neeData.es_vieja && !neeData.elegida" class="btn yes">
+            <p>Cancelar oferta</p>
+        </div>
+    </div>
 
 </div>

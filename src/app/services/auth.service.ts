@@ -1,9 +1,11 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PublicationService } from './publication.service';
 import { User } from './../models/User';
 import { ApiService } from './api.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +29,7 @@ export class AuthService {
   // }
   // private _isUserLogged: boolean = true;
 
-  constructor(private apiService: ApiService, private publicationService: PublicationService, private router: Router) {}
+  constructor(private apiService: ApiService, private publicationService: PublicationService, private router: Router, private dialog: MatDialog) {}
 
   get loggedUser() {
     return this._loggedUser;
@@ -85,8 +87,10 @@ export class AuthService {
   getFullUserInfo(userId: number) {
     const obs = this.apiService.showFullUserInfo(userId);
     obs.subscribe((user: User) => {
-      this._loggedUser.next(user);
-    })
+      if (!this._loggedUser) {
+        this._loggedUser.next(user);
+      }
+    });
     return obs;
   }
 
@@ -97,6 +101,11 @@ export class AuthService {
 
   deleteFriend(userId: number, telefono_friend: string) {
     const obs = this.apiService.deleteFriend(userId, telefono_friend);
+    obs.subscribe((res) => {
+      let newUser = this._loggedUser.value;
+      newUser.friends = newUser.friends.filter(f => f.telefono !== telefono_friend);
+      this._loggedUser.next(newUser);
+    });
     return obs;
   }
 
@@ -109,6 +118,16 @@ export class AuthService {
     telefono: string
   ) {
     const obs = this.apiService.editUser(id, nombre, apellido, email, fecha_nacimiento, telefono);
+    return obs;
+  }
+
+  rateUser(userId: number, calificacion: number, comentarios: string) {
+    const obs = this.apiService.rateUser(userId, calificacion, comentarios);
+    return obs;
+  }
+
+  rateProduct(publicationId: number, calificacion: number, comentarios: string) {
+    const obs = this.apiService.rateProduct(publicationId, calificacion, comentarios);
     return obs;
   }
 }

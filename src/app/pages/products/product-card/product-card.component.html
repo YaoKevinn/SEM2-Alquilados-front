@@ -26,8 +26,8 @@
   <div class="buttons-section">
     <div *ngIf="productData.activa" class="btn success" (click)="removeProduct()"><p>Pausar</p></div>
     <div *ngIf="productData.activa" class="btn completed" (click)="goToDetail()"><p>Detalle</p></div>
-    <div *ngIf="!productData.activa" class="small"><p>Pausada!</p></div>
-    <div *ngIf="!productData.activa" class="btn completed" [class.yes]="reactivated" (click)="reactivateProduct(productData.id)"><p>{{ reactivated ? 'Reactivada' : 'Activar' }}</p></div>
+    <div *ngIf="!productData.activa"  class="btn success" [class.yes]="reactivated" (click)="reactivateProduct(productData.id)"><p>{{ reactivated ? 'Reactivada' : 'Activar' }}</p></div>
+    <div *ngIf="!productData.activa" class="btn completed" (click)="goToOfferContact()"><p>Detalle</p></div>
   </div>
 
 </div>

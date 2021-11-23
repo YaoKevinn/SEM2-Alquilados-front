@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +36,9 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductCardComponent } from './pages/products/product-card/product-card.component';
 import { ProductDetailComponent } from './pages/products/product-detail/product-detail.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { ErrorInterceptor } from './error.interceptor';
+import { PublicationSuccessDialogComponent } from './components/publication-success-dialog/publication-success-dialog.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -69,7 +72,9 @@ const maskConfig: Partial<IConfig> = {
     ProductsComponent,
     ProductCardComponent,
     ProductDetailComponent,
-    SearchComponent
+    SearchComponent,
+    ConfirmDialogComponent,
+    PublicationSuccessDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,13 @@ const maskConfig: Partial<IConfig> = {
     HttpClientModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

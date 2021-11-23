@@ -1,8 +1,8 @@
 <div class="container">
   <p class="text bold">Atención</p>
-  <p class="text">Si finalizas el ofrecimiento, quiere decir que ya {{ data.isProduct ? 'devolviste el producto' : 'tenes tu objeto sano y salvo' }} :)</p>
+  <p class="text">Si finalizas el ofrecimiento, quiere decir que ya {{ !data.isProduct ? 'devolviste el producto' : 'tenes tu objeto sano y salvo' }} :)</p>
 
-  <p class="text-left">Cómo calificas a {{ data.publication.user.nombre + ' ' +  data.publication.user.apellido }}?</p>
+  <p class="text-left">Cómo calificas a {{ data.offer.user.nombre + ' ' +  data.offer.user.apellido }}?</p>
   <div class="row">
     <p class="text-left">Calificación: </p>
     <mat-form-field class="quality">
@@ -17,8 +17,8 @@
   </div>
   <textarea cols="20" rows="5" placeholder="Escribí una reseña sobre la persona..." [formControl]="commentControl"></textarea>
 
-  <p class="text-left" *ngIf="data.isProduct">Cómo calificas al producto de {{ data.publication.user.nombre + ' ' +  data.publication.user.apellido }}?</p>
-  <div class="row" *ngIf="data.isProduct">
+  <p class="text-left" *ngIf="!data.isProduct">Cómo calificas al producto de {{ data.offer.user.nombre + ' ' +  data.offer.user.apellido }}?</p>
+  <div class="row" *ngIf="!data.isProduct">
     <p class="text-left">Calificación: </p>
     <mat-form-field class="quality">
       <mat-select [formControl]="productQualityControl">
@@ -30,7 +30,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <textarea *ngIf="data.isProduct" [formControl]="productCommentControl" cols="20" rows="5" placeholder="Escribí una reseña sobre el producto..."></textarea>
+  <textarea *ngIf="!data.isProduct" [formControl]="productCommentControl" cols="20" rows="5" placeholder="Escribí una reseña sobre el producto..."></textarea>
 
   <div class="buttons-section">
     <div class="btn success" (click)="closeModal()"><p>Cancelar</p></div>

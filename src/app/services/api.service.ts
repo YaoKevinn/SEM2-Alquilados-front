@@ -450,4 +450,41 @@ export class ApiService {
       )
       .pipe(share());
   }
+
+  rateUser(userId: number, calificacion: number, comentarios: string) {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
+    return this.http
+      .post<any>(
+        this.baseApiUrl + `users/${userId}`,
+        {
+          calificacion,
+          comentarios,
+        },
+        {
+          headers,
+        }
+      )
+      .pipe(share());
+  }
+
+  rateProduct(publicationId: number, calificacion: number, comentarios: string) {
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Authorization', 'Bearer ' + this.token);
+    return this.http
+      .post<any>(
+        this.baseApiUrl + `publicaciones/${publicationId}`,
+        {
+          calificacion,
+          comentarios,
+        },
+        {
+          headers,
+        }
+      )
+      .pipe(share());
+  }
+
 }

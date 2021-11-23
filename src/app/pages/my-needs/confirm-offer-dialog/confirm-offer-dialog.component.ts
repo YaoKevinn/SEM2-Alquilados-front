@@ -22,7 +22,7 @@ export class ConfirmOfferDialogComponent implements OnInit {
 
   confirmFinalOffer() {
     this.publicationService.acceptOffer(
-      this.data.publication.id,
+      this.data.offer.id,
       this.data.offer.descripcion,
       this.data.offer.cantidad_tiempo,
       this.data.offer.unidad_tiempo,

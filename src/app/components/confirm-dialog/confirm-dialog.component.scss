@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    color: #f97c7c;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .body {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: normal;
+  }
+
+  .btn {
+    background: #2068CD;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+
+    p {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 26px;
+      text-align: center;
+      color: #FFFFFF;
+    }
+  }
+}

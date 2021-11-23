@@ -14,10 +14,16 @@ export class ProductCardComponent implements OnInit {
   constructor(public publicationService: PublicationService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.productData);
   }
 
   goToOfferContact() {
-
+    this.router.navigate(['my-needs-contact'], {
+      queryParams: {
+        id: this.productData.id,
+        isProduct: true,
+      }
+    });
   }
 
   removeProduct() {
