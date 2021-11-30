@@ -26,7 +26,7 @@ export class NeedCardComponent implements OnInit {
   goToNeedsContact() {
     this.router.navigate(['my-needs-contact'], {
       queryParams: {
-        id: this.neeData.id,
+        id: this.neeData.oferta_aceptada.id,
         isProduct: false,
       }
     });

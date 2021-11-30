@@ -29,7 +29,8 @@
         </p>
       </div>
 
-      <div class="btn yes" (click)="openSuccessDialog()"><p>Finalizar y calificar</p></div>
+      <div *ngIf="showQualificationBtn" class="btn yes" (click)="openSuccessDialog()"><p>Finalizar y calificar</p></div>
+      <div *ngIf="!showQualificationBtn" class="btn success"><p>Calificada!</p></div>
 
   </div>
 

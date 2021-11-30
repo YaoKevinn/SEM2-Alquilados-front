@@ -451,7 +451,7 @@ export class ApiService {
       .pipe(share());
   }
 
-  rateUser(userId: number, calificacion: number, comentarios: string) {
+  rateUser(userId: number, calificacion: number, comentarios: string, oferta_id: number) {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer ' + this.token);
@@ -461,6 +461,7 @@ export class ApiService {
         {
           calificacion,
           comentarios,
+          oferta_id
         },
         {
           headers,
@@ -469,7 +470,7 @@ export class ApiService {
       .pipe(share());
   }
 
-  rateProduct(publicationId: number, calificacion: number, comentarios: string) {
+  rateProduct(publicationId: number, calificacion: number, comentarios: string, oferta_id: number) {
     const headers = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Authorization', 'Bearer ' + this.token);
@@ -479,6 +480,7 @@ export class ApiService {
         {
           calificacion,
           comentarios,
+          oferta_id,
         },
         {
           headers,

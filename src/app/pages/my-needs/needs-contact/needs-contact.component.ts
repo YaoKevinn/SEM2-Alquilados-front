@@ -14,21 +14,26 @@ export class NeedsContactComponent implements OnInit {
   publication: any;
   offer: any
   isProduct: boolean;
+  showQualificationBtn = false;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private publicationService: PublicationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
+      this.isProduct = params.isProduct === 'true'
       if (params.id) {
         this.publicationService.getOfferById(params.id).subscribe((res) => {
           this.offer = res;
-
+          if (!this.isProduct) {
+            this.showQualificationBtn = !this.offer.producto_calificado || !this.offer.user_calificado;
+          } else {
+            this.showQualificationBtn = !this.offer.user_calificado;
+          }
           this.publicationService.getPublicationById(res.publicacion_id).subscribe((publication) => {
             this.publication = publication;
           });
         })
       }
-      this.isProduct = params.isProduct === 'true'
     });
     // if (params.data) {
     //   console.log(params.data);
@@ -57,6 +62,10 @@ export class NeedsContactComponent implements OnInit {
         publication: this.publication,
         offer: this.offer,
         isProduct: this.isProduct,
+      }
+    }).afterClosed().subscribe((rated) => {
+      if (rated) {
+        this.showQualificationBtn = false;
       }
     });
   }

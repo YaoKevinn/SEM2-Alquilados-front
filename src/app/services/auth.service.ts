@@ -121,13 +121,13 @@ export class AuthService {
     return obs;
   }
 
-  rateUser(userId: number, calificacion: number, comentarios: string) {
-    const obs = this.apiService.rateUser(userId, calificacion, comentarios);
+  rateUser(userId: number, calificacion: number, comentarios: string, oferta_id: number) {
+    const obs = this.apiService.rateUser(userId, calificacion, comentarios, oferta_id);
     return obs;
   }
 
-  rateProduct(publicationId: number, calificacion: number, comentarios: string) {
-    const obs = this.apiService.rateProduct(publicationId, calificacion, comentarios);
+  rateProduct(publicationId: number, calificacion: number, comentarios: string, oferta_id: number) {
+    const obs = this.apiService.rateProduct(publicationId, calificacion, comentarios, oferta_id);
     return obs;
   }
 }

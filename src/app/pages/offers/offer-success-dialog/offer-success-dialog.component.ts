@@ -25,12 +25,14 @@ export class OfferSuccessDialogComponent implements OnInit {
   }
 
   qualify() {
-    this.authService.rateUser(this.data.publication.user.id, this.qualityControl.value, this.commentControl.value).subscribe((res) => {
+    this.authService.rateUser(this.data.publication.user.id, this.qualityControl.value, this.commentControl.value, this.data.offer.id).subscribe((res) => {
       this.dialogRef.close(true);
     });
-    this.authService.rateProduct(this.data.publication.id, this.productQualityControl.value, this.productCommentControl.value).subscribe((res) => {
-      this.dialogRef.close(true);
-    });
+    if (this.data.isProduct) {
+      this.authService.rateProduct(this.data.publication.id, this.productQualityControl.value, this.productCommentControl.value,  this.data.offer.id).subscribe((res) => {
+        this.dialogRef.close(true);
+      });
+    }
   }
 
 }

@@ -20,7 +20,7 @@ export class ProductCardComponent implements OnInit {
   goToOfferContact() {
     this.router.navigate(['my-needs-contact'], {
       queryParams: {
-        id: this.productData.id,
+        id: this.productData.oferta_aceptada.id,
         isProduct: true,
       }
     });
