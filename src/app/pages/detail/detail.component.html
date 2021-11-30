@@ -82,6 +82,7 @@
         </div>
       </div>
       <div class="right" *ngIf="isProduct">
+        <p class="qualification-btn" (click)="openProductQualificationDialog()">Ver calificación del producto</p>
         <div class="upload-image-section">
           <img [src]="publication.foto" alt="image">
         </div>

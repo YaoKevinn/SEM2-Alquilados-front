@@ -15,11 +15,13 @@
   .row {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
+    height: 90px;
 
     .text-left {
-      align-self: flex-start;
-      margin-top: 28px;
+      // align-self: flex-start;
+      // margin-top: 28px;
       color: #000;
     }
 

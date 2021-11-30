@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileDialogComponent } from 'src/app/profile-dialog/profile-dialog.component';
 import { Publication } from 'src/app/models/Publication';
+import { ProductQualificationDialogComponent } from 'src/app/components/product-qualification-dialog/product-qualification-dialog.component';
 
 @Component({
   selector: 'app-detail',
@@ -131,4 +132,15 @@ export class DetailComponent implements OnInit {
       }
     })
   }
+
+  openProductQualificationDialog() {
+    this.dialog.open(ProductQualificationDialogComponent, {
+      panelClass: 'user-modal-container',
+      backdropClass: 'modal-backdrop',
+      data: {
+        publication: this.publication
+      }
+    })
+  }
+
 }

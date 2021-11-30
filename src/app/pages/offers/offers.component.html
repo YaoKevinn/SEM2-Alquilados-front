@@ -18,7 +18,7 @@
       </div>
       <div class="publications">
         <app-offer-card
-            *ngFor="let need of allOffers"
+            *ngFor="let need of offerService.allOffers.value"
             [neeData]="need"
         ></app-offer-card>
       </div>

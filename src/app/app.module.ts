@@ -39,6 +39,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { ErrorInterceptor } from './error.interceptor';
 import { PublicationSuccessDialogComponent } from './components/publication-success-dialog/publication-success-dialog.component';
+import { ProductQualificationDialogComponent } from './components/product-qualification-dialog/product-qualification-dialog.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -74,7 +75,8 @@ const maskConfig: Partial<IConfig> = {
     ProductDetailComponent,
     SearchComponent,
     ConfirmDialogComponent,
-    PublicationSuccessDialogComponent
+    PublicationSuccessDialogComponent,
+    ProductQualificationDialogComponent
   ],
   imports: [
     BrowserModule,
