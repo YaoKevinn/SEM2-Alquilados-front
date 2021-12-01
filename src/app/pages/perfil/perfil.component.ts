@@ -80,7 +80,7 @@ export class PerfilComponent implements OnInit {
         this.nameControl.value,
         this.firstNameControl.value,
         this.mailControl.value,
-        this.birthdateControl.value,
+        this.birthdateControl.value.replaceAll('-', '/'),
         this.phoneControl.value
       )
       .subscribe((res) => {

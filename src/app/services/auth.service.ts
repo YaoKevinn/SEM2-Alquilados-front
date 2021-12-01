@@ -49,6 +49,7 @@ export class AuthService {
       this._loggedUser.next(user);
       this._isUserLogged = true;
       localStorage.setItem('alquila2UserToken', user.token);
+      this.publicationService.getAllPublications(1, 6, true);
     });
     return obs;
   }

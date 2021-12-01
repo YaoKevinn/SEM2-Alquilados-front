@@ -25,7 +25,7 @@ export class PublicationSuccessDialogComponent implements OnInit {
   }
 
   qualify() {
-    this.authService.rateUser(this.data.publication.user.id, this.qualityControl.value, this.commentControl.value, this.data.offer.id).subscribe((res) => {
+    this.authService.rateUser(this.data.offer.user.id, this.qualityControl.value, this.commentControl.value, this.data.offer.id).subscribe((res) => {
       this.dialogRef.close(true);
     });
     if (!this.data.isProduct) {

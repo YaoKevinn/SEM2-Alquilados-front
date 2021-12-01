@@ -20,15 +20,18 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error) => {
-        if (error instanceof HttpErrorResponse) {
-          this.dialog.open(ConfirmDialogComponent, {
-            panelClass: 'user-modal-container',
-            backdropClass: 'modal-backdrop',
-            data: {
-              title: 'Oops, algo salió mal',
-              body: 'Por favor intentar nuevamente.'
-            }
-          });
+        console.log(request);
+        if (!request.url.includes("publicaciones?page") && !request.url.includes("current")) {
+          if (error instanceof HttpErrorResponse) {
+            this.dialog.open(ConfirmDialogComponent, {
+              panelClass: 'user-modal-container',
+              backdropClass: 'modal-backdrop',
+              data: {
+                title: 'Oops, algo salió mal',
+                body: 'Por favor intentar nuevamente.'
+              }
+            });
+          }
         }
         return throwError(error);
       }),
