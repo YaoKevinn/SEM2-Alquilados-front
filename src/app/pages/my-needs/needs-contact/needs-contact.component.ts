@@ -20,7 +20,6 @@ export class NeedsContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.isProduct = params.isProduct === 'true'
       if (params.id) {
         this.publicationService.getOfferById(params.id).subscribe((res) => {
           this.offer = res;
@@ -31,6 +30,7 @@ export class NeedsContactComponent implements OnInit {
           }
           this.publicationService.getPublicationById(res.publicacion_id).subscribe((publication) => {
             this.publication = publication;
+            this.isProduct = !this.publication.es_necesidad;
           });
         })
       }

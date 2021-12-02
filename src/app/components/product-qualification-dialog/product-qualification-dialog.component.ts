@@ -1,3 +1,4 @@
+import { PublicationService } from 'src/app/services/publication.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/User';
@@ -11,15 +12,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ProductQualificationDialogComponent implements OnInit {
   publication;
 
-  constructor(private dialogRef: MatDialogRef<ProductQualificationDialogComponent>, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService) { }
+  constructor(private dialogRef: MatDialogRef<ProductQualificationDialogComponent>, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService, private publicationService: PublicationService) { }
 
   ngOnInit(): void {
     this.publication = this.data.publication;
-    if (!this.publication.promedio) {
-      this.authService.getFullUserInfo(this.publication.id).subscribe((data) => {
-        this.publication = data;
-      });
-    }
+    // if (!this.publication.promedio) {
+    //   this.publicationService.getPublicationById(this.publication.id).subscribe((data) => {
+    //     this.publication = data;
+    //   });
+    // }
   }
 
   closeBtnClicked() {
